@@ -39,11 +39,13 @@
 - Samarbete (Collaboration)
 - Langsiktighet (Long-term relationships)
 
-### Brand Colors
-- **Primary:** Bright red/pink — hsl(354, 98%, 56%) ≈ #F41B3B
-- **Secondary:** Dark teal — hsl(178, 100%, 20%) ≈ #006663
-- **Dark surfaces:** Blue-gray (hue 240)
-- **Light surfaces:** Neutral whites
+### Brand Colors (from actual visual appearance)
+- **Primary Dark:** Dark charcoal/navy — used for header, hero, footer (~#2D2D3F)
+- **Light Surface:** White/light gray — used for content sections
+- **Accent:** Subtle teal/cyan — visible as border on active nav item "Våra tjänster"
+- **Text on dark:** White
+- **Text on light:** Dark gray/black
+- **NOTE:** CSS variables included red/pink (#F41B3B) but it is NOT visually present on the site. The actual palette is dark navy + white/gray + subtle teal.
 
 ### Typography
 - **Body:** Open Sans (sans-serif)

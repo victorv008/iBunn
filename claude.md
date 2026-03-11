@@ -30,9 +30,12 @@
 4. Projektledning (Project Management)
 
 ### Brand Identity
-- **Primary Color:** #F41B3B (bright red/pink)
-- **Secondary Color:** #006663 (dark teal)
-- **Dark Surfaces:** Blue-gray (hue 240)
+- **Primary Dark:** ~#2D2D3F (dark charcoal/navy — header, hero, footer)
+- **Light Surface:** White/light gray (content sections)
+- **Accent:** Subtle teal/cyan (active nav border, ~#006663)
+- **Text on dark:** White
+- **Text on light:** Dark gray/near-black
+- **NOTE:** CSS had red (#F41B3B) defined but NOT visually used. Actual palette is dark navy + white + teal accent.
 - **Body Font:** Open Sans
 - **Heading Font:** Cormorant Garamond
 - **Core Values:** Security, Commitment, Proactivity
