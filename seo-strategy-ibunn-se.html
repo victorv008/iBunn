@@ -1,0 +1,1957 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SEO Strategy Report — ibunn.se</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap');
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --bg: #0a0a0f;
+    --bg-card: rgba(255,255,255,0.03);
+    --bg-card-hover: rgba(255,255,255,0.06);
+    --border: rgba(255,255,255,0.08);
+    --border-hover: rgba(255,255,255,0.15);
+    --text: #e8e8ed;
+    --text-secondary: #8b8b9e;
+    --text-muted: #5a5a6e;
+    --accent: #6366f1;
+    --accent-glow: rgba(99,102,241,0.3);
+    --green: #22c55e;
+    --green-bg: rgba(34,197,94,0.12);
+    --green-border: rgba(34,197,94,0.25);
+    --yellow: #eab308;
+    --yellow-bg: rgba(234,179,8,0.12);
+    --yellow-border: rgba(234,179,8,0.25);
+    --red: #ef4444;
+    --red-bg: rgba(239,68,68,0.12);
+    --red-border: rgba(239,68,68,0.25);
+    --blue: #3b82f6;
+    --blue-bg: rgba(59,130,246,0.12);
+    --orange: #f97316;
+    --orange-bg: rgba(249,115,22,0.12);
+    --orange-border: rgba(249,115,22,0.25);
+    --purple: #a78bfa;
+    --purple-bg: rgba(167,139,250,0.08);
+    --purple-border: rgba(167,139,250,0.15);
+    --radius: 16px;
+    --radius-sm: 10px;
+    --radius-xs: 6px;
+  }
+
+  ::selection { background: var(--accent); color: white; }
+
+  body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.6;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  body::before {
+    content: '';
+    position: fixed;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(ellipse at 20% 50%, rgba(99,102,241,0.06) 0%, transparent 50%),
+                radial-gradient(ellipse at 80% 20%, rgba(139,92,246,0.04) 0%, transparent 50%),
+                radial-gradient(ellipse at 50% 80%, rgba(59,130,246,0.03) 0%, transparent 50%);
+    z-index: -1;
+    animation: ambientDrift 20s ease-in-out infinite;
+  }
+  @keyframes ambientDrift {
+    0%, 100% { transform: translate(0, 0); }
+    33% { transform: translate(-2%, 1%); }
+    66% { transform: translate(1%, -1%); }
+  }
+
+  ::-webkit-scrollbar { width: 6px; }
+  ::-webkit-scrollbar-track { background: transparent; }
+  ::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.1); border-radius: 3px; }
+  ::-webkit-scrollbar-thumb:hover { background: rgba(255,255,255,0.2); }
+
+  .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+
+  .header {
+    padding: 40px 0 0;
+    text-align: center;
+  }
+  .header-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 6px 16px;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 100px;
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--text-secondary);
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    margin-bottom: 20px;
+  }
+  .header-badge .dot {
+    width: 6px; height: 6px; border-radius: 50%;
+    background: var(--green);
+    box-shadow: 0 0 8px var(--green);
+    animation: pulse 2s ease-in-out infinite;
+  }
+  @keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.4; }
+  }
+  .header h1 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 42px;
+    font-weight: 700;
+    line-height: 1.15;
+    margin-bottom: 12px;
+    background: linear-gradient(135deg, #fff 0%, #a5a5c0 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  .header .subtitle {
+    font-size: 16px;
+    color: var(--text-secondary);
+    margin-bottom: 32px;
+  }
+
+  .score-section {
+    display: flex;
+    align-items: center;
+    gap: 48px;
+    margin-bottom: 40px;
+    padding: 40px;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    backdrop-filter: blur(20px);
+  }
+  .score-circle-wrap { position: relative; flex-shrink: 0; }
+  .score-circle {
+    width: 180px;
+    height: 180px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    position: relative;
+  }
+  .score-circle svg {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%;
+    height: 100%;
+    transform: rotate(-90deg);
+  }
+  .score-circle svg circle {
+    fill: none;
+    stroke-width: 6;
+    stroke-linecap: round;
+  }
+  .score-circle svg .bg-ring { stroke: rgba(255,255,255,0.06); }
+  .score-circle svg .progress-ring {
+    stroke: var(--accent);
+    stroke-dasharray: 502;
+    stroke-dashoffset: 276;
+    filter: drop-shadow(0 0 6px var(--accent-glow));
+    transition: stroke-dashoffset 1.5s ease-out;
+  }
+  .score-number {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 56px;
+    font-weight: 700;
+    line-height: 1;
+    color: white;
+    position: relative;
+    z-index: 1;
+  }
+  .score-label {
+    font-size: 13px;
+    color: var(--text-secondary);
+    font-weight: 500;
+    position: relative;
+    z-index: 1;
+    margin-top: 4px;
+  }
+  .score-grade {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    position: relative;
+    z-index: 1;
+    margin-top: 2px;
+  }
+  .score-details { flex: 1; }
+  .score-details h2 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 22px;
+    font-weight: 600;
+    margin-bottom: 8px;
+  }
+  .score-details p {
+    color: var(--text-secondary);
+    font-size: 15px;
+    line-height: 1.7;
+    margin-bottom: 20px;
+  }
+
+  .sub-scores {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+    gap: 12px;
+  }
+  .sub-score {
+    padding: 14px 16px;
+    background: rgba(255,255,255,0.02);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+  }
+  .sub-score-label {
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--text-muted);
+    margin-bottom: 6px;
+  }
+  .sub-score-value {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 28px;
+    font-weight: 700;
+  }
+  .sub-score-bar {
+    height: 3px;
+    border-radius: 2px;
+    background: rgba(255,255,255,0.06);
+    margin-top: 8px;
+    overflow: hidden;
+  }
+  .sub-score-bar-fill {
+    height: 100%;
+    border-radius: 2px;
+    transition: width 1s ease-out;
+  }
+
+  .tabs {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: rgba(10,10,15,0.85);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--border);
+    padding: 0;
+  }
+  .tabs-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 24px;
+    display: flex;
+    gap: 0;
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+  .tabs-inner::-webkit-scrollbar { display: none; }
+  .tab-btn {
+    padding: 16px 24px;
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--text-muted);
+    background: none;
+    border: none;
+    border-bottom: 2px solid transparent;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: all 0.2s;
+    position: relative;
+  }
+  .tab-btn:hover { color: var(--text-secondary); }
+  .tab-btn.active {
+    color: var(--text);
+    border-bottom-color: var(--accent);
+  }
+  .tab-btn .tab-count {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 20px;
+    height: 20px;
+    padding: 0 6px;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 100px;
+    font-size: 11px;
+    font-weight: 600;
+    margin-left: 8px;
+    color: var(--text-secondary);
+  }
+  .tab-btn.active .tab-count {
+    background: var(--accent);
+    border-color: var(--accent);
+    color: white;
+  }
+
+  .tab-content { display: none; padding: 40px 0 80px; }
+  .tab-content.active { display: block; }
+
+  .section-title {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 24px;
+    font-weight: 700;
+    margin-bottom: 8px;
+  }
+  .section-subtitle {
+    color: var(--text-secondary);
+    font-size: 15px;
+    margin-bottom: 24px;
+  }
+
+  .stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 16px;
+    margin-bottom: 40px;
+  }
+  .stat-card {
+    padding: 24px;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    text-align: center;
+    transition: border-color 0.2s;
+  }
+  .stat-card:hover { border-color: var(--border-hover); }
+  .stat-value {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 36px;
+    font-weight: 700;
+    color: white;
+    margin-bottom: 4px;
+  }
+  .stat-label {
+    font-size: 13px;
+    color: var(--text-secondary);
+  }
+
+  .card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 28px;
+    margin-bottom: 16px;
+    transition: border-color 0.2s;
+  }
+  .card:hover { border-color: var(--border-hover); }
+  .card-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 16px;
+    cursor: pointer;
+  }
+  .card-title {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 18px;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    padding: 4px 12px;
+    border-radius: 100px;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.3px;
+  }
+  .badge-critical { background: var(--red-bg); color: var(--red); border: 1px solid var(--red-border); }
+  .badge-high { background: var(--orange-bg); color: var(--orange); border: 1px solid var(--orange-border); }
+  .badge-medium { background: var(--yellow-bg); color: var(--yellow); border: 1px solid var(--yellow-border); }
+  .badge-low { background: var(--green-bg); color: var(--green); border: 1px solid var(--green-border); }
+  .badge-pass { background: var(--green-bg); color: var(--green); border: 1px solid var(--green-border); }
+  .badge-warning { background: var(--yellow-bg); color: var(--yellow); border: 1px solid var(--yellow-border); }
+  .badge-fail { background: var(--red-bg); color: var(--red); border: 1px solid var(--red-border); }
+
+  .finding {
+    padding: 16px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.04);
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    gap: 16px;
+    align-items: start;
+  }
+  .finding:last-child { border-bottom: none; }
+  .finding-status {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    margin-top: 8px;
+  }
+  .finding-status.pass { background: var(--green); box-shadow: 0 0 6px rgba(34,197,94,0.4); }
+  .finding-status.warning { background: var(--yellow); box-shadow: 0 0 6px rgba(234,179,8,0.4); }
+  .finding-status.fail { background: var(--red); box-shadow: 0 0 6px rgba(239,68,68,0.4); }
+  .finding-content h4 {
+    font-size: 14px;
+    font-weight: 600;
+    margin-bottom: 4px;
+  }
+  .finding-content p {
+    font-size: 13px;
+    color: var(--text-secondary);
+    line-height: 1.6;
+  }
+  .finding-rec {
+    margin-top: 8px;
+    padding: 10px 14px;
+    background: rgba(99,102,241,0.06);
+    border-left: 3px solid var(--accent);
+    border-radius: 0 var(--radius-xs) var(--radius-xs) 0;
+    font-size: 13px;
+    color: var(--text);
+    line-height: 1.5;
+  }
+
+  .collapsible {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    margin-bottom: 12px;
+    overflow: hidden;
+    transition: border-color 0.2s;
+  }
+  .collapsible:hover { border-color: var(--border-hover); }
+  .collapsible-header {
+    padding: 20px 24px;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    user-select: none;
+  }
+  .collapsible-header:hover { background: rgba(255,255,255,0.02); }
+  .collapsible-title {
+    font-weight: 600;
+    color: var(--text);
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .collapsible-body {
+    overflow: hidden;
+    max-height: 0;
+    transition: max-height 0.35s ease;
+  }
+  .collapsible.open .collapsible-body {
+    max-height: 5000px;
+  }
+  .collapsible-body-inner {
+    padding: 0 24px 24px;
+  }
+  .collapse-icon {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.05);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    color: var(--text-muted);
+    transition: transform 0.3s, background 0.2s;
+    flex-shrink: 0;
+  }
+  .collapsible.open .collapse-icon { transform: rotate(180deg); }
+
+  .page-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 16px;
+  }
+  .page-table th {
+    text-align: left;
+    padding: 12px 16px;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--text-muted);
+    border-bottom: 1px solid var(--border);
+    font-weight: 600;
+  }
+  .page-table td {
+    padding: 12px 16px;
+    font-size: 14px;
+    border-bottom: 1px solid rgba(255,255,255,0.03);
+    vertical-align: top;
+  }
+  .page-table tr:hover td { background: rgba(255,255,255,0.02); }
+  .page-url {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px;
+    color: var(--accent);
+    word-break: break-all;
+  }
+
+  .checklist-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 12px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.04);
+  }
+  .checklist-item:last-child { border-bottom: none; }
+  .check-icon {
+    width: 22px;
+    height: 22px;
+    border-radius: 6px;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    margin-top: 1px;
+  }
+  .check-icon.pass {
+    background: var(--green-bg);
+    color: var(--green);
+    border: 1px solid var(--green-border);
+  }
+  .check-icon.fail {
+    background: var(--red-bg);
+    color: var(--red);
+    border: 1px solid var(--red-border);
+  }
+  .check-icon.warn {
+    background: var(--yellow-bg);
+    color: var(--yellow);
+    border: 1px solid var(--yellow-border);
+  }
+  .check-text {
+    font-size: 14px;
+    color: var(--text);
+  }
+  .check-text.muted {
+    color: var(--text-secondary);
+  }
+
+  .action-item {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    padding: 24px;
+    margin-bottom: 12px;
+    display: flex;
+    gap: 20px;
+    align-items: flex-start;
+    transition: border-color 0.2s;
+  }
+  .action-item:hover { border-color: var(--border-hover); }
+  .action-number {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 24px;
+    font-weight: 700;
+    color: var(--accent);
+    flex-shrink: 0;
+    width: 36px;
+    text-align: center;
+    opacity: 0.5;
+  }
+  .action-content { flex: 1; }
+  .action-title {
+    font-weight: 600;
+    color: var(--text);
+    font-size: 15px;
+    margin-bottom: 6px;
+  }
+  .action-desc {
+    font-size: 14px;
+    color: var(--text-secondary);
+    line-height: 1.6;
+  }
+  .action-impact {
+    margin-top: 8px;
+    font-size: 13px;
+    color: var(--green);
+    font-weight: 500;
+  }
+
+  .cluster {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 24px;
+    margin-bottom: 16px;
+  }
+  .cluster-title {
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 600;
+    color: var(--purple);
+    font-size: 16px;
+    margin-bottom: 12px;
+  }
+  .cluster-pages {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  .cluster-page {
+    padding: 6px 14px;
+    border-radius: 100px;
+    background: var(--purple-bg);
+    border: 1px solid var(--purple-border);
+    font-size: 13px;
+    font-family: 'JetBrains Mono', monospace;
+    color: var(--text-secondary);
+  }
+  .cluster-page.pillar {
+    background: rgba(167,139,250,0.15);
+    border-color: rgba(167,139,250,0.3);
+    color: var(--purple);
+    font-weight: 600;
+  }
+
+  .lsi-cloud {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 12px;
+  }
+  .lsi-tag {
+    padding: 6px 14px;
+    background: rgba(99,102,241,0.08);
+    border: 1px solid rgba(99,102,241,0.2);
+    border-radius: 100px;
+    font-size: 13px;
+    font-family: 'JetBrains Mono', monospace;
+    color: var(--text);
+    transition: all 0.2s;
+  }
+  .lsi-tag:hover {
+    background: rgba(99,102,241,0.15);
+    border-color: rgba(99,102,241,0.4);
+  }
+  .lsi-tag.integrated {
+    background: var(--green-bg);
+    border-color: var(--green-border);
+    color: var(--green);
+  }
+  .lsi-tag.missing {
+    background: var(--red-bg);
+    border-color: var(--red-border);
+    color: var(--red);
+    opacity: 0.7;
+  }
+
+  @media (max-width: 768px) {
+    .header h1 { font-size: 28px; }
+    .score-section { flex-direction: column; text-align: center; padding: 24px; gap: 24px; }
+    .stats-grid { grid-template-columns: repeat(2, 1fr); }
+    .sub-scores { grid-template-columns: repeat(2, 1fr); }
+    .action-item { flex-direction: column; gap: 12px; }
+  }
+
+  @media print {
+    .tabs { display: none; }
+    .tab-content { display: block !important; page-break-before: always; }
+    body::before { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="container">
+    <div class="header-badge"><span class="dot"></span> Site-Wide SEO Audit</div>
+    <h1>ibunn.se</h1>
+    <p class="subtitle">Comprehensive analysis of 1 page &mdash; Generated March 19, 2026</p>
+  </div>
+</div>
+
+<!-- Score overview -->
+<div class="container" style="padding-top: 0; padding-bottom: 32px;">
+  <div class="score-section">
+    <div class="score-circle-wrap">
+      <div class="score-circle">
+        <svg viewBox="0 0 160 160">
+          <circle class="bg-ring" cx="80" cy="80" r="74"/>
+          <circle class="progress-ring" cx="80" cy="80" r="74"/>
+        </svg>
+        <span class="score-number">45</span>
+        <span class="score-grade">F</span>
+        <span class="score-label">Overall Health</span>
+      </div>
+    </div>
+    <div class="score-details">
+      <h2>Beautiful design, but missing all SEO infrastructure</h2>
+      <p>Your site has excellent visual design, a clean layout, and a logical heading hierarchy &mdash; that's a strong foundation. However, nearly every essential SEO element is absent: no meta description, no structured data, no Open Graph tags, no sitemap, no robots.txt, and no favicon. Content is extremely thin at ~200 words vs. the competitor average of 2,000+. The good news: the architecture is clean and the structure is correct, so building SEO on top of this will be straightforward.</p>
+      <div class="sub-scores">
+        <div class="sub-score">
+          <div class="sub-score-label">Technical</div>
+          <div class="sub-score-value" style="color: var(--red)">22</div>
+          <div class="sub-score-bar"><div class="sub-score-bar-fill" style="width:22%; background: var(--red)"></div></div>
+        </div>
+        <div class="sub-score">
+          <div class="sub-score-label">Content</div>
+          <div class="sub-score-value" style="color: var(--orange)">41</div>
+          <div class="sub-score-bar"><div class="sub-score-bar-fill" style="width:41%; background: var(--orange)"></div></div>
+        </div>
+        <div class="sub-score">
+          <div class="sub-score-label">Architecture</div>
+          <div class="sub-score-value" style="color: var(--green)">90</div>
+          <div class="sub-score-bar"><div class="sub-score-bar-fill" style="width:90%; background: var(--green)"></div></div>
+        </div>
+        <div class="sub-score">
+          <div class="sub-score-label">Cross-Page</div>
+          <div class="sub-score-value" style="color: var(--yellow)">78</div>
+          <div class="sub-score-bar"><div class="sub-score-bar-fill" style="width:78%; background: var(--yellow)"></div></div>
+        </div>
+        <div class="sub-score">
+          <div class="sub-score-label">Social & Schema</div>
+          <div class="sub-score-value" style="color: var(--red)">0</div>
+          <div class="sub-score-bar"><div class="sub-score-bar-fill" style="width:0%; background: var(--red)"></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- TAB NAVIGATION -->
+<div class="tabs">
+  <div class="tabs-inner">
+    <button class="tab-btn active" onclick="switchTab('executive')">Executive Summary</button>
+    <button class="tab-btn" onclick="switchTab('pages')">Page Breakdown <span class="tab-count">1</span></button>
+    <button class="tab-btn" onclick="switchTab('sitewide')">Site-Wide Issues <span class="tab-count">11</span></button>
+    <button class="tab-btn" onclick="switchTab('technical')">Technical</button>
+    <button class="tab-btn" onclick="switchTab('content')">Content Strategy</button>
+    <button class="tab-btn" onclick="switchTab('linking')">Internal Linking</button>
+    <button class="tab-btn" onclick="switchTab('actions')">Action Plan</button>
+  </div>
+</div>
+
+<!-- ==================== TAB 1: EXECUTIVE SUMMARY ==================== -->
+<div id="tab-executive" class="tab-content active">
+<div class="container">
+
+  <div class="section-title">Executive Summary</div>
+  <div class="section-subtitle">High-level overview of ibunn.se&rsquo;s SEO health and top priorities</div>
+
+  <div class="stats-grid">
+    <div class="stat-card">
+      <div class="stat-value">1</div>
+      <div class="stat-label">Pages Audited</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-value">2</div>
+      <div class="stat-label">Critical Issues</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-value">5</div>
+      <div class="stat-label">High Priority</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-value">4</div>
+      <div class="stat-label">Warnings</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-value">~200</div>
+      <div class="stat-label">Avg Word Count</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-value">0%</div>
+      <div class="stat-label">Schema Coverage</div>
+    </div>
+  </div>
+
+  <div class="card" style="margin-bottom: 24px;">
+    <div class="card-title" style="margin-bottom: 16px;">Key Findings</div>
+    <div style="color: var(--text-secondary); font-size: 15px; line-height: 1.8;">
+      The iBunn website has zero structured data markup (JSON-LD), zero Open Graph tags, and zero Twitter Card tags &mdash; meaning search engines and social platforms have no rich metadata to work with. The meta description is completely missing, which means Google will auto-generate a snippet from page content, reducing your click-through rate. Content is critically thin at approximately 200 words, while top-ranking Swedish IT consulting competitors like Prog-IT (5,000+ words), Castra (2,500+ words), and DevCore (1,800+ words) provide substantially more depth. On the positive side, the heading hierarchy (H1 &rarr; H2 &rarr; H3) is perfectly structured, the page has exactly one H1 tag, service images include alt text, and the viewport meta tag is present. The title tag &ldquo;iBunn - IT-konsultf&ouml;retag&rdquo; at 25 characters is too short and doesn&rsquo;t include the location &ldquo;Stockholm&rdquo; &mdash; a critical keyword all competitors use.
+    </div>
+  </div>
+
+  <div class="section-title" style="font-size: 18px; margin-top: 32px;">Top 3 Priorities</div>
+  <div class="section-subtitle">The highest-impact actions to take right now</div>
+
+  <div class="action-item">
+    <div class="action-number">1</div>
+    <div class="action-content">
+      <div class="action-title">Add meta description, improve title tag, and add canonical URL</div>
+      <div class="action-desc">Your title is only 25 characters (should be 30-60). Change it to something like &ldquo;IT-konsult Stockholm | S&auml;ker IT-r&aring;dgivning &amp; Systemutveckling | iBunn&rdquo; (62 chars). Add a meta description of 150-160 chars that includes &ldquo;IT-konsult Stockholm&rdquo; and your key differentiators. Add a canonical tag pointing to your production URL.</div>
+      <div class="action-impact">Expected impact: Immediate improvement in search snippet quality and click-through rate</div>
+    </div>
+    <span class="badge badge-critical">Critical</span>
+  </div>
+
+  <div class="action-item">
+    <div class="action-number">2</div>
+    <div class="action-content">
+      <div class="action-title">Add Organization/LocalBusiness schema markup</div>
+      <div class="action-desc">Add JSON-LD structured data for LocalBusiness (or ProfessionalService) schema including your company name, address in Stockholm, phone number, email, services offered, and operating hours. 3 of 5 competitors have schema markup &mdash; this is essential for rich search results and Google Business visibility.</div>
+      <div class="action-impact">Expected impact: Rich snippets in search results, better local SEO visibility in Stockholm</div>
+    </div>
+    <span class="badge badge-critical">Critical</span>
+  </div>
+
+  <div class="action-item">
+    <div class="action-number">3</div>
+    <div class="action-content">
+      <div class="action-title">Expand content from ~200 words to 1,500+ words</div>
+      <div class="action-desc">Your page has approximately 200 words of visible content. Top-ranking competitors average 2,000+ words. Add detailed service descriptions (what each service includes, who it&rsquo;s for, your approach), a &ldquo;Why choose iBunn&rdquo; section, client testimonials or case studies, an FAQ section targeting common search queries, and more about your team&rsquo;s expertise with GDPR/NIS2 compliance.</div>
+      <div class="action-impact">Expected impact: Dramatically improved topical authority and keyword coverage for ranking</div>
+    </div>
+    <span class="badge badge-high">High</span>
+  </div>
+
+</div>
+</div>
+
+<!-- ==================== TAB 2: PAGE-BY-PAGE BREAKDOWN ==================== -->
+<div id="tab-pages" class="tab-content">
+<div class="container">
+
+  <div class="section-title">Page-by-Page Breakdown</div>
+  <div class="section-subtitle">Individual audit results for the single-page site</div>
+
+  <div class="card" style="overflow-x: auto; padding: 0;">
+    <table class="page-table">
+      <thead>
+        <tr>
+          <th>Page</th>
+          <th>Title</th>
+          <th>Words</th>
+          <th>H1</th>
+          <th>Meta Desc</th>
+          <th>Schema</th>
+          <th>OG Tags</th>
+          <th>Issues</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><span class="page-url">/index.html</span></td>
+          <td>iBunn - IT-konsultf&ouml;retag</td>
+          <td>~200</td>
+          <td><span class="badge badge-pass">Pass</span></td>
+          <td><span class="badge badge-fail">Fail</span></td>
+          <td><span class="badge badge-fail">Fail</span></td>
+          <td><span class="badge badge-fail">Fail</span></td>
+          <td>11</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Detailed page breakdown -->
+  <div style="margin-top: 24px;"></div>
+  <div class="collapsible open">
+    <div class="collapsible-header" onclick="this.parentElement.classList.toggle('open')">
+      <span class="collapsible-title">
+        <span class="page-url">/index.html (Homepage)</span>
+        <span class="badge badge-critical">11 issues</span>
+      </span>
+      <span class="collapse-icon">&#9660;</span>
+    </div>
+    <div class="collapsible-body">
+      <div class="collapsible-body-inner">
+
+        <!-- Title Tag -->
+        <div class="finding">
+          <div class="finding-status warning"></div>
+          <div class="finding-content">
+            <h4>Title tag too short and missing location keyword</h4>
+            <p>Current title: &ldquo;iBunn - IT-konsultf&ouml;retag&rdquo; (25 characters). Recommended length is 30-60 characters. Missing the critical keyword &ldquo;Stockholm&rdquo; that all 5 competitors include in their titles.</p>
+            <div class="finding-rec">Change to: &ldquo;IT-konsult Stockholm | S&auml;ker IT-r&aring;dgivning &amp; Systemutveckling | iBunn&rdquo; (62 chars). This includes the primary keyword &ldquo;IT-konsult Stockholm&rdquo;, key service terms, and your brand name.</div>
+          </div>
+          <span class="badge badge-high">High</span>
+        </div>
+
+        <!-- Meta Description -->
+        <div class="finding">
+          <div class="finding-status fail"></div>
+          <div class="finding-content">
+            <h4>Meta description completely missing</h4>
+            <p>No &lt;meta name=&quot;description&quot;&gt; tag found. Google will auto-generate a snippet from page content, which gives you no control over how your site appears in search results. 3 of 5 competitors (Prog-IT, Castra, Ehn&amp;Tech) have meta descriptions.</p>
+            <div class="finding-rec">Add: &lt;meta name=&quot;description&quot; content=&quot;iBunn &auml;r ett IT-konsultf&ouml;retag i Stockholm specialiserat p&aring; IT-r&aring;dgivning, systemutveckling, IT-arkitektur och projektledning. GDPR- och NIS2-expertis. Kontakta oss f&ouml;r en kostnadsfri konsultation.&quot;&gt; (156 chars)</div>
+          </div>
+          <span class="badge badge-critical">Critical</span>
+        </div>
+
+        <!-- Canonical Tag -->
+        <div class="finding">
+          <div class="finding-status fail"></div>
+          <div class="finding-content">
+            <h4>Canonical tag missing</h4>
+            <p>No &lt;link rel=&quot;canonical&quot;&gt; tag found. Without a canonical, search engines may index multiple URL variants (with/without trailing slash, www vs non-www, hash fragments) as separate pages, diluting your ranking signals.</p>
+            <div class="finding-rec">Add &lt;link rel=&quot;canonical&quot; href=&quot;https://ibunn.se/&quot;&gt; in the &lt;head&gt; section.</div>
+          </div>
+          <span class="badge badge-high">High</span>
+        </div>
+
+        <!-- H1 Tag -->
+        <div class="finding">
+          <div class="finding-status pass"></div>
+          <div class="finding-content">
+            <h4>H1 tag present and singular</h4>
+            <p>Exactly one H1 tag found: &ldquo;Vi &auml;r iBunn&rdquo;. Good practice. However, the H1 doesn&rsquo;t contain the target keyword &ldquo;IT-konsult Stockholm&rdquo;.</p>
+            <div class="finding-rec">Consider changing to &ldquo;IT-konsultf&ouml;retag i Stockholm&rdquo; or keeping the creative H1 and ensuring the keyword appears in the first 100 words of body text instead.</div>
+          </div>
+          <span class="badge badge-low">Pass</span>
+        </div>
+
+        <!-- Heading Hierarchy -->
+        <div class="finding">
+          <div class="finding-status pass"></div>
+          <div class="finding-content">
+            <h4>Heading hierarchy is correct</h4>
+            <p>Clean hierarchy: H1 (1) &rarr; H2 (2: &ldquo;Hur kan vi hj&auml;lpa dig?&rdquo;, &ldquo;Kontakta oss&rdquo;) &rarr; H3 (4 service names). No skipped levels.</p>
+          </div>
+          <span class="badge badge-pass">Pass</span>
+        </div>
+
+        <!-- Content Length -->
+        <div class="finding">
+          <div class="finding-status fail"></div>
+          <div class="finding-content">
+            <h4>Extremely thin content (~200 words)</h4>
+            <p>The page has approximately 200 words of visible text content (excluding navigation and form labels). Top-ranking competitors average: Prog-IT (5,000+), Castra (2,500-3,000), DevCore (1,800-2,000), Ehn&amp;Tech (1,500-1,800). This is the single biggest ranking bottleneck.</p>
+            <div class="finding-rec">Expand to at least 1,500 words. Add: detailed service descriptions with use cases, &ldquo;Why choose iBunn&rdquo; section, team expertise highlights, FAQ section, client process overview, and GDPR/NIS2 compliance details.</div>
+          </div>
+          <span class="badge badge-high">High</span>
+        </div>
+
+        <!-- Image Alt Text -->
+        <div class="finding">
+          <div class="finding-status pass"></div>
+          <div class="finding-content">
+            <h4>Service images have alt text</h4>
+            <p>All 4 service images have alt text (&ldquo;S&auml;ker r&aring;dgivning&rdquo;, &ldquo;IT-Arkitektur&rdquo;, &ldquo;Systemutveckling&rdquo;, &ldquo;Projektledning&rdquo;). Hero background image correctly uses aria-hidden=&quot;true&quot; with empty alt.</p>
+            <div class="finding-rec">Make alt text more descriptive for SEO, e.g., &ldquo;IT-s&auml;kerhet och GDPR-r&aring;dgivning i Stockholm &mdash; iBunn&rdquo; instead of just &ldquo;S&auml;ker r&aring;dgivning&rdquo;.</div>
+          </div>
+          <span class="badge badge-pass">Pass</span>
+        </div>
+
+        <!-- Schema Markup -->
+        <div class="finding">
+          <div class="finding-status fail"></div>
+          <div class="finding-content">
+            <h4>No structured data / schema markup</h4>
+            <p>Zero JSON-LD or microdata found. Competitors DevCore, Prog-IT, Castra, and Ehn&amp;Tech all have Organization/LocalBusiness schema. This means you&rsquo;re invisible to rich snippet features and Google Knowledge Panel.</p>
+            <div class="finding-rec">Add JSON-LD for LocalBusiness or ProfessionalService schema with: name (&ldquo;iBunn / Bunn Consulting AB&rdquo;), address (Stockholm, Sverige), phone (+46 8 123 45 67), email (hello@ibunn.se), services, URL, and logo.</div>
+          </div>
+          <span class="badge badge-critical">Critical</span>
+        </div>
+
+        <!-- Open Graph -->
+        <div class="finding">
+          <div class="finding-status fail"></div>
+          <div class="finding-content">
+            <h4>No Open Graph tags</h4>
+            <p>Missing og:title, og:description, og:image, og:url, and og:type. When your link is shared on LinkedIn, Facebook, or Slack, there will be no preview card &mdash; just a bare URL. This is especially important for a B2B consulting firm where LinkedIn sharing is a primary traffic source.</p>
+            <div class="finding-rec">Add all 5 core OG tags: og:title, og:description, og:image (use a branded sharing image at 1200x630px), og:url, og:type=&quot;website&quot;.</div>
+          </div>
+          <span class="badge badge-high">High</span>
+        </div>
+
+        <!-- Twitter Card -->
+        <div class="finding">
+          <div class="finding-status fail"></div>
+          <div class="finding-content">
+            <h4>No Twitter Card tags</h4>
+            <p>Missing twitter:card, twitter:title, twitter:description, twitter:image tags.</p>
+            <div class="finding-rec">Add twitter:card=&quot;summary_large_image&quot; plus title, description, and image tags.</div>
+          </div>
+          <span class="badge badge-medium">Medium</span>
+        </div>
+
+        <!-- Favicon -->
+        <div class="finding">
+          <div class="finding-status fail"></div>
+          <div class="finding-content">
+            <h4>No favicon</h4>
+            <p>No &lt;link rel=&quot;icon&quot;&gt; found. The browser tab will show a generic icon, appearing unprofessional and reducing brand recognition in bookmarks and browser history.</p>
+            <div class="finding-rec">Add a favicon in multiple sizes (16x16, 32x32, 180x180 for Apple touch) and an SVG favicon for modern browsers.</div>
+          </div>
+          <span class="badge badge-medium">Medium</span>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+</div>
+</div>
+
+<!-- ==================== TAB 3: SITE-WIDE ISSUES ==================== -->
+<div id="tab-sitewide" class="tab-content">
+<div class="container">
+
+  <div class="section-title">Site-Wide Issues</div>
+  <div class="section-subtitle">Cross-cutting concerns affecting the entire site</div>
+
+  <!-- Robots & Sitemap -->
+  <div class="card">
+    <div class="card-title" style="margin-bottom: 16px;">Robots.txt &amp; Sitemap</div>
+
+    <div class="finding">
+      <div class="finding-status fail"></div>
+      <div class="finding-content">
+        <h4>No robots.txt file</h4>
+        <p>No robots.txt found in the project directory. Search engines won&rsquo;t have crawling directives and won&rsquo;t find your sitemap reference. Every production website should have a robots.txt.</p>
+        <div class="finding-rec">Create a robots.txt at the site root with:<br><code>User-agent: *<br>Allow: /<br>Sitemap: https://ibunn.se/sitemap.xml</code></div>
+      </div>
+      <span class="badge badge-high">High</span>
+    </div>
+
+    <div class="finding">
+      <div class="finding-status fail"></div>
+      <div class="finding-content">
+        <h4>No sitemap.xml file</h4>
+        <p>No sitemap.xml found. While Google can discover your single page through crawling, a sitemap signals to search engines which URLs are important and when they were last modified.</p>
+        <div class="finding-rec">Create a sitemap.xml listing your page URL with a lastmod date. Even for a single-page site, this is a best practice that signals professionalism to search engines.</div>
+      </div>
+      <span class="badge badge-high">High</span>
+    </div>
+  </div>
+
+  <!-- Technical Infrastructure -->
+  <div class="card">
+    <div class="card-title" style="margin-bottom: 16px;">Technical Infrastructure</div>
+
+    <div class="finding">
+      <div class="finding-status warning"></div>
+      <div class="finding-content">
+        <h4>Using Tailwind CSS CDN instead of production build</h4>
+        <p>The page loads Tailwind from cdn.tailwindcss.com. This is a development convenience &mdash; in production it delivers the entire Tailwind framework (~300KB+) instead of only the classes you actually use (~10-30KB with purging). This significantly impacts page load speed.</p>
+        <div class="finding-rec">Switch to a production Tailwind build using PostCSS with purging enabled. This can reduce CSS size by 90%+ and improve Core Web Vitals scores.</div>
+      </div>
+      <span class="badge badge-medium">Medium</span>
+    </div>
+
+    <div class="finding">
+      <div class="finding-status warning"></div>
+      <div class="finding-content">
+        <h4>No image lazy loading</h4>
+        <p>None of the 6 images use loading=&quot;lazy&quot;. Service card images below the fold are loaded immediately on page load, increasing initial page weight unnecessarily.</p>
+        <div class="finding-rec">Add loading=&quot;lazy&quot; to all images except the hero background. The hero should use loading=&quot;eager&quot; or have a preload hint to load first.</div>
+      </div>
+      <span class="badge badge-medium">Medium</span>
+    </div>
+
+    <div class="finding">
+      <div class="finding-status warning"></div>
+      <div class="finding-content">
+        <h4>No font preconnect/preload hints</h4>
+        <p>Google Fonts is loaded without preconnect hints. The browser must discover, connect to, and download from fonts.googleapis.com and fonts.gstatic.com sequentially, adding latency to text rendering.</p>
+        <div class="finding-rec">Add before the font stylesheet:<br><code>&lt;link rel=&quot;preconnect&quot; href=&quot;https://fonts.googleapis.com&quot;&gt;<br>&lt;link rel=&quot;preconnect&quot; href=&quot;https://fonts.gstatic.com&quot; crossorigin&gt;</code></div>
+      </div>
+      <span class="badge badge-low">Low</span>
+    </div>
+
+    <div class="finding">
+      <div class="finding-status warning"></div>
+      <div class="finding-content">
+        <h4>All images are PNG format</h4>
+        <p>All 6 images are PNG files. Modern formats like WebP or AVIF can reduce file sizes by 25-50% with comparable quality, improving page load speed and Core Web Vitals.</p>
+        <div class="finding-rec">Convert images to WebP format with PNG fallback. Use &lt;picture&gt; elements for format negotiation.</div>
+      </div>
+      <span class="badge badge-medium">Medium</span>
+    </div>
+  </div>
+
+  <!-- Security & Hosting -->
+  <div class="card">
+    <div class="card-title" style="margin-bottom: 16px;">Security &amp; Server Headers (Pre-Launch Notes)</div>
+
+    <div class="finding">
+      <div class="finding-status warning"></div>
+      <div class="finding-content">
+        <h4>HTTPS, HSTS, and security headers cannot be verified (localhost)</h4>
+        <p>Since the site is running on localhost:4000, server-side security headers cannot be tested. These will need to be configured on your production hosting before launch.</p>
+        <div class="finding-rec">Before launch, ensure your hosting provider or server config includes: HTTPS with valid SSL certificate, Strict-Transport-Security (HSTS), Content-Security-Policy, X-Content-Type-Options: nosniff, X-Frame-Options, Referrer-Policy, and gzip/brotli compression.</div>
+      </div>
+      <span class="badge badge-medium">Medium</span>
+    </div>
+  </div>
+
+  <!-- LSI Keyword Coverage -->
+  <div class="card">
+    <div class="card-title" style="margin-bottom: 16px;">LSI / Semantic Keyword Coverage</div>
+    <p style="color: var(--text-secondary); font-size: 14px; margin-bottom: 16px;">Based on analysis of 5 top-ranking Swedish IT consulting competitors, these are the semantic keywords your site should contain. <span style="color: var(--green);">Green = present</span> | <span style="color: var(--red);">Red = missing</span></p>
+
+    <div class="lsi-cloud">
+      <span class="lsi-tag integrated">IT-r&aring;dgivning</span>
+      <span class="lsi-tag integrated">systemutveckling</span>
+      <span class="lsi-tag integrated">projektledning</span>
+      <span class="lsi-tag integrated">IT-arkitektur</span>
+      <span class="lsi-tag integrated">IT-infrastruktur</span>
+      <span class="lsi-tag integrated">GDPR</span>
+      <span class="lsi-tag integrated">NIS2</span>
+      <span class="lsi-tag integrated">riskanalys</span>
+      <span class="lsi-tag integrated">s&auml;kerhet</span>
+      <span class="lsi-tag integrated">Stockholm</span>
+      <span class="lsi-tag integrated">Sverige</span>
+      <span class="lsi-tag integrated">IT-f&ouml;retag</span>
+      <span class="lsi-tag missing">digital transformation</span>
+      <span class="lsi-tag missing">molntj&auml;nster</span>
+      <span class="lsi-tag missing">molnl&ouml;sningar</span>
+      <span class="lsi-tag missing">IT-support</span>
+      <span class="lsi-tag missing">agil utveckling</span>
+      <span class="lsi-tag missing">systemintegration</span>
+      <span class="lsi-tag missing">konsulttj&auml;nster</span>
+      <span class="lsi-tag missing">offert</span>
+      <span class="lsi-tag missing">kostnadseffektiv</span>
+      <span class="lsi-tag missing">serviceavtal</span>
+      <span class="lsi-tag missing">certifierade konsulter</span>
+      <span class="lsi-tag missing">kundcase</span>
+      <span class="lsi-tag missing">referensprojekt</span>
+      <span class="lsi-tag missing">partnerskap</span>
+      <span class="lsi-tag missing">ISO-certifiering</span>
+      <span class="lsi-tag missing">cybers&auml;kerhet</span>
+      <span class="lsi-tag missing">efterlevnad</span>
+      <span class="lsi-tag missing">compliance</span>
+      <span class="lsi-tag missing">IT-konsultbolag</span>
+      <span class="lsi-tag missing">IT-partner</span>
+      <span class="lsi-tag missing">outsourcing</span>
+      <span class="lsi-tag missing">webbutveckling</span>
+    </div>
+    <p style="color: var(--text-muted); font-size: 13px; margin-top: 16px;">12 of 34 LSI keywords present (35%) &mdash; 22 missing keywords represent immediate content improvement opportunities.</p>
+  </div>
+
+</div>
+</div>
+
+<!-- ==================== TAB 4: TECHNICAL ==================== -->
+<div id="tab-technical" class="tab-content">
+<div class="container">
+
+  <div class="section-title">Technical SEO</div>
+  <div class="section-subtitle">Infrastructure, performance indicators, and technical implementation</div>
+
+  <div class="card">
+    <div class="card-title" style="margin-bottom: 20px;">Implementation Checklist</div>
+
+    <div class="checklist-item">
+      <div class="check-icon warn">&#9888;</div>
+      <div class="check-text muted">HTTPS &mdash; Cannot verify (localhost). Must be enabled on production hosting.</div>
+    </div>
+    <div class="checklist-item">
+      <div class="check-icon pass">&#10003;</div>
+      <div class="check-text">Viewport meta tag present and correctly configured</div>
+    </div>
+    <div class="checklist-item">
+      <div class="check-icon pass">&#10003;</div>
+      <div class="check-text">HTML lang attribute set to &ldquo;sv&rdquo; (Swedish)</div>
+    </div>
+    <div class="checklist-item">
+      <div class="check-icon pass">&#10003;</div>
+      <div class="check-text">UTF-8 charset declared</div>
+    </div>
+    <div class="checklist-item">
+      <div class="check-icon pass">&#10003;</div>
+      <div class="check-text">Mobile-responsive design (Tailwind responsive classes used throughout)</div>
+    </div>
+    <div class="checklist-item">
+      <div class="check-icon fail">&#10007;</div>
+      <div class="check-text">robots.txt &mdash; Missing</div>
+    </div>
+    <div class="checklist-item">
+      <div class="check-icon fail">&#10007;</div>
+      <div class="check-text">sitemap.xml &mdash; Missing</div>
+    </div>
+    <div class="checklist-item">
+      <div class="check-icon fail">&#10007;</div>
+      <div class="check-text">Structured data (JSON-LD) &mdash; None found</div>
+    </div>
+    <div class="checklist-item">
+      <div class="check-icon fail">&#10007;</div>
+      <div class="check-text">Canonical tag &mdash; Missing</div>
+    </div>
+    <div class="checklist-item">
+      <div class="check-icon fail">&#10007;</div>
+      <div class="check-text">Open Graph tags &mdash; None found</div>
+    </div>
+    <div class="checklist-item">
+      <div class="check-icon fail">&#10007;</div>
+      <div class="check-text">Twitter Card tags &mdash; None found</div>
+    </div>
+    <div class="checklist-item">
+      <div class="check-icon fail">&#10007;</div>
+      <div class="check-text">Favicon &mdash; Missing</div>
+    </div>
+    <div class="checklist-item">
+      <div class="check-icon fail">&#10007;</div>
+      <div class="check-text">Image lazy loading &mdash; Not implemented</div>
+    </div>
+    <div class="checklist-item">
+      <div class="check-icon fail">&#10007;</div>
+      <div class="check-text">Font preconnect/preload hints &mdash; Missing</div>
+    </div>
+    <div class="checklist-item">
+      <div class="check-icon warn">&#9888;</div>
+      <div class="check-text muted">Images in PNG format only &mdash; should use WebP for smaller file sizes</div>
+    </div>
+    <div class="checklist-item">
+      <div class="check-icon warn">&#9888;</div>
+      <div class="check-text muted">Tailwind loaded via CDN &mdash; should use production build with purging</div>
+    </div>
+    <div class="checklist-item">
+      <div class="check-icon warn">&#9888;</div>
+      <div class="check-text muted">Security headers &mdash; Cannot verify on localhost, must configure on production</div>
+    </div>
+  </div>
+
+  <!-- Schema Strategy -->
+  <div class="section-title" style="font-size: 18px; margin-top: 32px;">Schema Markup Strategy</div>
+  <div class="section-subtitle">Recommended structured data for your site</div>
+  <div class="card">
+    <p style="color: var(--text-secondary); font-size: 14px; margin-bottom: 16px;">Your site currently has <strong style="color: var(--red);">zero</strong> structured data. Here&rsquo;s exactly what you should add:</p>
+
+    <div class="finding">
+      <div class="finding-status fail"></div>
+      <div class="finding-content">
+        <h4>ProfessionalService / LocalBusiness Schema (Priority 1)</h4>
+        <p>Add a JSON-LD block in &lt;head&gt; with @type: &ldquo;ProfessionalService&rdquo; or &ldquo;LocalBusiness&rdquo;. Include: name (&ldquo;iBunn&rdquo; / &ldquo;Bunn Consulting AB&rdquo;), address (Stockholm, Sverige), telephone (+46 8 123 45 67), email (hello@ibunn.se), url, logo, description, areaServed, and serviceType array listing your 4 core services.</p>
+      </div>
+      <span class="badge badge-critical">Critical</span>
+    </div>
+
+    <div class="finding">
+      <div class="finding-status fail"></div>
+      <div class="finding-content">
+        <h4>WebSite Schema (Priority 2)</h4>
+        <p>Add a separate JSON-LD block with @type: &ldquo;WebSite&rdquo; including name, url, and publisher information. This helps Google understand the site as a whole entity.</p>
+      </div>
+      <span class="badge badge-high">High</span>
+    </div>
+
+    <div class="finding">
+      <div class="finding-status fail"></div>
+      <div class="finding-content">
+        <h4>FAQPage Schema (Priority 3 &mdash; after content expansion)</h4>
+        <p>Once you add an FAQ section to the page, wrap it in FAQPage schema. This can earn you expandable FAQ rich snippets in Google search results, dramatically increasing your search result real estate.</p>
+      </div>
+      <span class="badge badge-medium">Medium</span>
+    </div>
+  </div>
+
+  <!-- Performance -->
+  <div class="section-title" style="font-size: 18px; margin-top: 32px;">Performance Indicators</div>
+  <div class="section-subtitle">Resource counts, image optimization, and loading patterns</div>
+  <div class="card">
+    <div class="finding">
+      <div class="finding-status warning"></div>
+      <div class="finding-content">
+        <h4>6 images, all PNG, no lazy loading</h4>
+        <p>The page loads 6 PNG images: 1 hero background (likely large), 4 service card images, and 1 unused (hero-bg.png is in assets but hero-bg-v2.png is used). Total image payload could be 2-5MB depending on resolution.</p>
+        <div class="finding-rec">Convert to WebP (50%+ size reduction). Add loading=&quot;lazy&quot; to service images. Add fetchpriority=&quot;high&quot; to hero image. Remove unused hero-bg.png from assets.</div>
+      </div>
+      <span class="badge badge-medium">Medium</span>
+    </div>
+
+    <div class="finding">
+      <div class="finding-status warning"></div>
+      <div class="finding-content">
+        <h4>External resources: 2 CDN dependencies</h4>
+        <p>Page depends on cdn.tailwindcss.com (CSS framework + forms plugin) and fonts.googleapis.com (Space Grotesk font). Both are render-blocking external resources.</p>
+        <div class="finding-rec">Self-host the font and use a Tailwind production build to eliminate external dependencies and reduce latency.</div>
+      </div>
+      <span class="badge badge-medium">Medium</span>
+    </div>
+
+    <div class="finding">
+      <div class="finding-status pass"></div>
+      <div class="finding-content">
+        <h4>Minimal JavaScript footprint</h4>
+        <p>The page uses only a small inline &lt;script&gt; block (~40 lines) for mobile menu toggle, navbar scroll effect, intersection observer animations, and scroll overlay. No heavy JS frameworks. This is excellent for performance.</p>
+      </div>
+      <span class="badge badge-pass">Pass</span>
+    </div>
+  </div>
+
+</div>
+</div>
+
+<!-- ==================== TAB 5: CONTENT STRATEGY ==================== -->
+<div id="tab-content" class="tab-content">
+<div class="container">
+
+  <div class="section-title">Content Strategy</div>
+  <div class="section-subtitle">Content gaps, keyword opportunities, and recommended improvements</div>
+
+  <div class="stats-grid">
+    <div class="stat-card">
+      <div class="stat-value">1</div>
+      <div class="stat-label">Thin Content Pages</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-value">0</div>
+      <div class="stat-label">Strong Content Pages</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-value">~200</div>
+      <div class="stat-label">Total Word Count</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-value">1</div>
+      <div class="stat-label">Missing Meta Desc</div>
+    </div>
+  </div>
+
+  <!-- Suggested Target Keywords -->
+  <div class="section-title" style="font-size: 18px;">Suggested Target Keywords</div>
+  <div class="section-subtitle">Based on your services, location, and competitor analysis &mdash; these are the keywords you should target</div>
+  <div class="card" style="overflow-x: auto; padding: 0;">
+    <table class="page-table">
+      <thead>
+        <tr>
+          <th>Priority</th>
+          <th>Keyword</th>
+          <th>Search Intent</th>
+          <th>Competitors Targeting</th>
+          <th>Currently on Page</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><span class="badge badge-critical">Primary</span></td>
+          <td><strong>IT-konsult Stockholm</strong></td>
+          <td>Commercial</td>
+          <td>5/5</td>
+          <td><span class="badge badge-fail">No</span></td>
+        </tr>
+        <tr>
+          <td><span class="badge badge-high">Primary</span></td>
+          <td><strong>IT-konsultf&ouml;retag Stockholm</strong></td>
+          <td>Commercial</td>
+          <td>4/5</td>
+          <td><span class="badge badge-warning">Partial</span></td>
+        </tr>
+        <tr>
+          <td><span class="badge badge-medium">Secondary</span></td>
+          <td>IT-r&aring;dgivning Stockholm</td>
+          <td>Informational/Commercial</td>
+          <td>3/5</td>
+          <td><span class="badge badge-warning">Partial</span></td>
+        </tr>
+        <tr>
+          <td><span class="badge badge-medium">Secondary</span></td>
+          <td>systemutveckling Stockholm</td>
+          <td>Commercial</td>
+          <td>4/5</td>
+          <td><span class="badge badge-warning">Partial</span></td>
+        </tr>
+        <tr>
+          <td><span class="badge badge-medium">Secondary</span></td>
+          <td>IT-s&auml;kerhet konsult Sverige</td>
+          <td>Commercial</td>
+          <td>3/5</td>
+          <td><span class="badge badge-fail">No</span></td>
+        </tr>
+        <tr>
+          <td><span class="badge badge-medium">Secondary</span></td>
+          <td>GDPR NIS2 konsult Stockholm</td>
+          <td>Commercial</td>
+          <td>2/5</td>
+          <td><span class="badge badge-warning">Partial</span></td>
+        </tr>
+        <tr>
+          <td><span class="badge badge-low">Long-tail</span></td>
+          <td>IT-konsultbolag med GDPR-expertis</td>
+          <td>Commercial</td>
+          <td>1/5</td>
+          <td><span class="badge badge-fail">No</span></td>
+        </tr>
+        <tr>
+          <td><span class="badge badge-low">Long-tail</span></td>
+          <td>projektledning IT Stockholm</td>
+          <td>Commercial</td>
+          <td>2/5</td>
+          <td><span class="badge badge-warning">Partial</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Keyword Map -->
+  <div class="section-title" style="font-size: 18px; margin-top: 32px;">Current Page Keyword Assessment</div>
+  <div class="section-subtitle">How well your page targets the primary keyword</div>
+  <div class="card" style="overflow-x: auto; padding: 0;">
+    <table class="page-table">
+      <thead>
+        <tr>
+          <th>Page</th>
+          <th>Inferred Target Keyword</th>
+          <th>Title Includes KW</th>
+          <th>H1 Includes KW</th>
+          <th>In First 100 Words</th>
+          <th>Keyword Density</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><span class="page-url">/index.html</span></td>
+          <td>IT-konsult Stockholm</td>
+          <td><span class="badge badge-fail">No</span></td>
+          <td><span class="badge badge-fail">No</span></td>
+          <td><span class="badge badge-warning">Partial*</span></td>
+          <td><span class="badge badge-fail">&lt;0.5%</span></td>
+        </tr>
+      </tbody>
+    </table>
+    <p style="padding: 12px 16px; font-size: 12px; color: var(--text-muted);">*&ldquo;IT-konsultf&ouml;retag&rdquo; appears in the sub-heading but the full target phrase &ldquo;IT-konsult Stockholm&rdquo; is never used.</p>
+  </div>
+
+  <!-- Competitor Comparison -->
+  <div class="section-title" style="font-size: 18px; margin-top: 32px;">Competitor Comparison</div>
+  <div class="section-subtitle">How iBunn compares to the top 5 ranking Swedish IT consulting sites</div>
+  <div class="card" style="overflow-x: auto; padding: 0;">
+    <table class="page-table">
+      <thead>
+        <tr>
+          <th>Company</th>
+          <th>Title Length</th>
+          <th>Meta Desc</th>
+          <th>Schema</th>
+          <th>Word Count</th>
+          <th>H2 Count</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Prog-IT</td>
+          <td>54 chars</td>
+          <td><span class="badge badge-pass">Yes</span></td>
+          <td><span class="badge badge-pass">WebPage+Org+Breadcrumb</span></td>
+          <td>5,000+</td>
+          <td>Many</td>
+        </tr>
+        <tr>
+          <td>Castra</td>
+          <td>55 chars</td>
+          <td><span class="badge badge-pass">Yes</span></td>
+          <td><span class="badge badge-pass">WebPage+Org+Breadcrumb</span></td>
+          <td>2,500-3,000</td>
+          <td>12+</td>
+        </tr>
+        <tr>
+          <td>DevCore</td>
+          <td>61 chars</td>
+          <td><span class="badge badge-warning">Missing</span></td>
+          <td><span class="badge badge-pass">Organization</span></td>
+          <td>1,800-2,000</td>
+          <td>10+</td>
+        </tr>
+        <tr>
+          <td>Ehn &amp; Tech</td>
+          <td>51 chars</td>
+          <td><span class="badge badge-pass">Yes</span></td>
+          <td><span class="badge badge-pass">LocalBusiness</span></td>
+          <td>1,500-1,800</td>
+          <td>6+</td>
+        </tr>
+        <tr>
+          <td>Beetroot</td>
+          <td>59 chars</td>
+          <td><span class="badge badge-warning">Missing</span></td>
+          <td><span class="badge badge-warning">GTM only</span></td>
+          <td>~400</td>
+          <td>Few</td>
+        </tr>
+        <tr style="background: rgba(239,68,68,0.05);">
+          <td><strong style="color: var(--red);">iBunn</strong></td>
+          <td style="color: var(--red);">25 chars</td>
+          <td><span class="badge badge-fail">Missing</span></td>
+          <td><span class="badge badge-fail">None</span></td>
+          <td style="color: var(--red);">~200</td>
+          <td style="color: var(--red);">2</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Content Gap Recommendations -->
+  <div class="section-title" style="font-size: 18px; margin-top: 32px;">Content Gap Recommendations</div>
+  <div class="section-subtitle">Specific content sections to add, based on what every top competitor covers</div>
+
+  <div class="action-item">
+    <div class="action-number">1</div>
+    <div class="action-content">
+      <div class="action-title">Detailed service descriptions (all 5 competitors have this)</div>
+      <div class="action-desc">Each of your 4 services has only 1-2 sentences. Competitors dedicate 200-500 words per service. Expand each with: what the service includes, target audience, technologies/frameworks used, your approach/methodology, and an example outcome.</div>
+      <div class="action-impact">Expected impact: 800-2,000 additional words of keyword-rich content</div>
+    </div>
+    <span class="badge badge-critical">Critical</span>
+  </div>
+
+  <div class="action-item">
+    <div class="action-number">2</div>
+    <div class="action-content">
+      <div class="action-title">Add &ldquo;Varf&ouml;r v&auml;lja iBunn?&rdquo; (Why choose iBunn?) section</div>
+      <div class="action-desc">4 of 5 competitors have a differentiator section. Include your core values (S&auml;kerhet, Engagemang, Proaktivitet) expanded with concrete details, your team&rsquo;s qualifications, and what makes you different from larger firms like Atea or Knowit.</div>
+      <div class="action-impact">Expected impact: Trust signals and E-E-A-T signals for Google</div>
+    </div>
+    <span class="badge badge-high">High</span>
+  </div>
+
+  <div class="action-item">
+    <div class="action-number">3</div>
+    <div class="action-content">
+      <div class="action-title">Add FAQ section targeting &ldquo;People Also Ask&rdquo; queries</div>
+      <div class="action-desc">Add 6-10 frequently asked questions like: &ldquo;Vad kostar en IT-konsult i Stockholm?&rdquo;, &ldquo;Hur hj&auml;lper en IT-konsult med GDPR?&rdquo;, &ldquo;Vad &auml;r NIS2 och beh&ouml;ver mitt f&ouml;retag f&ouml;lja det?&rdquo;, &ldquo;Hur l&aring;ng tid tar ett systemutvecklingsprojekt?&rdquo;. Wrap in FAQPage schema for rich snippet eligibility.</div>
+      <div class="action-impact">Expected impact: Featured snippet eligibility + 300-500 additional words</div>
+    </div>
+    <span class="badge badge-high">High</span>
+  </div>
+
+  <div class="action-item">
+    <div class="action-number">4</div>
+    <div class="action-content">
+      <div class="action-title">Add client testimonials or case studies</div>
+      <div class="action-desc">Competitors like DevCore and Castra showcase client logos and success stories. Even 2-3 brief testimonials or case study summaries add powerful E-E-A-T signals and help convert visitors to leads.</div>
+      <div class="action-impact">Expected impact: Improved trust signals, longer time on page, better conversion</div>
+    </div>
+    <span class="badge badge-medium">Medium</span>
+  </div>
+
+  <div class="action-item">
+    <div class="action-number">5</div>
+    <div class="action-content">
+      <div class="action-title">Add technology/platform partner logos</div>
+      <div class="action-desc">DevCore lists Salesforce, Dynamics, Microsoft 365, SharePoint, Umbraco. Prog-IT mentions cloud platforms. Displaying technology partner logos (Microsoft, Azure, AWS, etc.) signals expertise and improves keyword presence for technology-related searches.</div>
+      <div class="action-impact">Expected impact: Additional LSI keyword coverage + trust signals</div>
+    </div>
+    <span class="badge badge-medium">Medium</span>
+  </div>
+
+</div>
+</div>
+
+<!-- ==================== TAB 6: INTERNAL LINKING ==================== -->
+<div id="tab-linking" class="tab-content">
+<div class="container">
+
+  <div class="section-title">Internal Linking Analysis</div>
+  <div class="section-subtitle">Link equity distribution for the single-page site</div>
+
+  <div class="stats-grid">
+    <div class="stat-card">
+      <div class="stat-value">8</div>
+      <div class="stat-label">Total Internal Links</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-value">0</div>
+      <div class="stat-label">Orphan Pages</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-value">0</div>
+      <div class="stat-label">Dead-End Pages</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-value">8</div>
+      <div class="stat-label">Avg Links/Page</div>
+    </div>
+  </div>
+
+  <!-- Link Equity -->
+  <div class="section-title" style="font-size: 18px;">Link Structure Overview</div>
+  <div class="section-subtitle">Current anchor link distribution within the single page</div>
+  <div class="card" style="overflow-x: auto; padding: 0;">
+    <table class="page-table">
+      <thead>
+        <tr>
+          <th>Link Target</th>
+          <th>Links Pointing To</th>
+          <th>Source Locations</th>
+          <th>Status</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><span class="page-url">#hero</span></td>
+          <td>3</td>
+          <td>Desktop nav, Mobile nav, Footer</td>
+          <td><span class="badge badge-pass">Good</span></td>
+        </tr>
+        <tr>
+          <td><span class="page-url">#services</span></td>
+          <td>4</td>
+          <td>Desktop nav, Mobile nav, Hero CTA, Footer</td>
+          <td><span class="badge badge-pass">Good</span></td>
+        </tr>
+        <tr>
+          <td><span class="page-url">#contact</span></td>
+          <td>6</td>
+          <td>Desktop nav (x2), Mobile nav (x2), Hero CTA, Footer</td>
+          <td><span class="badge badge-pass">Good</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="card" style="margin-top: 24px;">
+    <div class="card-title" style="margin-bottom: 16px;">Single-Page Site Linking Assessment</div>
+    <div style="color: var(--text-secondary); font-size: 14px; line-height: 1.8;">
+      <p>As a single-page site, internal linking is inherently limited to anchor navigation. Your current structure is clean &mdash; all 3 main sections (#hero, #services, #contact) are linked from navigation, CTAs, and the footer. This is correct for a single-page layout.</p>
+      <p style="margin-top: 12px;"><strong style="color: var(--text);">Future consideration:</strong> If you expand to a multi-page site (e.g., individual service pages, blog, about page), internal linking becomes critical. Each service page should link to related services, the contact page, and back to the homepage. A blog would create content hubs that build topical authority.</p>
+    </div>
+  </div>
+
+  <!-- External Links -->
+  <div class="section-title" style="font-size: 18px; margin-top: 32px;">External Links</div>
+  <div class="section-subtitle">Outgoing links to external domains</div>
+  <div class="card">
+    <div class="finding">
+      <div class="finding-status warning"></div>
+      <div class="finding-content">
+        <h4>No external content links</h4>
+        <p>The page has zero external links to authoritative sources. While not critical for a consulting site, linking to 1-2 authoritative Swedish or EU resources (e.g., IMY for GDPR, EU NIS2 directive page) in your service descriptions would signal topical expertise to Google.</p>
+        <div class="finding-rec">When expanding service descriptions, add contextual links to official GDPR/NIS2 regulation pages or relevant Swedish government IT resources.</div>
+      </div>
+      <span class="badge badge-low">Low</span>
+    </div>
+  </div>
+
+</div>
+</div>
+
+<!-- ==================== TAB 7: ACTION PLAN ==================== -->
+<div id="tab-actions" class="tab-content">
+<div class="container">
+
+  <div class="section-title">Prioritized Action Plan</div>
+  <div class="section-subtitle">Every recommendation ranked by impact, grouped by effort level</div>
+
+  <!-- Quick Wins -->
+  <div class="section-title" style="font-size: 18px; color: var(--green);">Quick Wins <span style="font-size: 14px; color: var(--text-muted); font-weight: 400;">&mdash; less than 1 hour each</span></div>
+  <div style="margin-bottom: 24px;">
+
+    <div class="action-item">
+      <div class="action-number">1</div>
+      <div class="action-content">
+        <div class="action-title">Add meta description tag</div>
+        <div class="action-desc">Add &lt;meta name=&quot;description&quot; content=&quot;iBunn &auml;r ett IT-konsultf&ouml;retag i Stockholm. Vi erbjuder IT-r&aring;dgivning, systemutveckling, IT-arkitektur och projektledning med expertis inom GDPR och NIS2. Kontakta oss idag.&quot;&gt;</div>
+        <div class="action-impact">Expected impact: Control over your Google search snippet, improved CTR</div>
+      </div>
+      <span class="badge badge-critical">Critical</span>
+    </div>
+
+    <div class="action-item">
+      <div class="action-number">2</div>
+      <div class="action-content">
+        <div class="action-title">Improve title tag with target keyword</div>
+        <div class="action-desc">Change from &ldquo;iBunn - IT-konsultf&ouml;retag&rdquo; to &ldquo;IT-konsult Stockholm | S&auml;ker IT-r&aring;dgivning &amp; Systemutveckling | iBunn&rdquo;</div>
+        <div class="action-impact">Expected impact: Keyword targeting for primary search term &ldquo;IT-konsult Stockholm&rdquo;</div>
+      </div>
+      <span class="badge badge-critical">Critical</span>
+    </div>
+
+    <div class="action-item">
+      <div class="action-number">3</div>
+      <div class="action-content">
+        <div class="action-title">Add canonical tag</div>
+        <div class="action-desc">Add &lt;link rel=&quot;canonical&quot; href=&quot;https://ibunn.se/&quot;&gt; in the &lt;head&gt;</div>
+        <div class="action-impact">Expected impact: Prevents duplicate URL indexing issues</div>
+      </div>
+      <span class="badge badge-high">High</span>
+    </div>
+
+    <div class="action-item">
+      <div class="action-number">4</div>
+      <div class="action-content">
+        <div class="action-title">Add Open Graph tags</div>
+        <div class="action-desc">Add og:title, og:description, og:image (create a 1200x630px branded card), og:url, og:type=&quot;website&quot;, og:locale=&quot;sv_SE&quot;</div>
+        <div class="action-impact">Expected impact: Professional preview cards when shared on LinkedIn/Facebook/Slack</div>
+      </div>
+      <span class="badge badge-high">High</span>
+    </div>
+
+    <div class="action-item">
+      <div class="action-number">5</div>
+      <div class="action-content">
+        <div class="action-title">Add favicon</div>
+        <div class="action-desc">Create and add favicon.ico, apple-touch-icon (180x180), and an SVG favicon with your brand mark</div>
+        <div class="action-impact">Expected impact: Professional branding in browser tabs and bookmarks</div>
+      </div>
+      <span class="badge badge-medium">Medium</span>
+    </div>
+
+    <div class="action-item">
+      <div class="action-number">6</div>
+      <div class="action-content">
+        <div class="action-title">Add font preconnect hints</div>
+        <div class="action-desc">Add preconnect links for fonts.googleapis.com and fonts.gstatic.com before the font stylesheet</div>
+        <div class="action-impact">Expected impact: Faster font loading, reduced layout shift</div>
+      </div>
+      <span class="badge badge-low">Low</span>
+    </div>
+
+    <div class="action-item">
+      <div class="action-number">7</div>
+      <div class="action-content">
+        <div class="action-title">Add lazy loading to below-fold images</div>
+        <div class="action-desc">Add loading=&quot;lazy&quot; to the 4 service card images. Keep hero image eager or preloaded.</div>
+        <div class="action-impact">Expected impact: Faster initial page load, better Core Web Vitals</div>
+      </div>
+      <span class="badge badge-medium">Medium</span>
+    </div>
+
+    <div class="action-item">
+      <div class="action-number">8</div>
+      <div class="action-content">
+        <div class="action-title">Create robots.txt and sitemap.xml</div>
+        <div class="action-desc">Create both files at the site root. robots.txt with Allow: / and Sitemap reference. sitemap.xml listing your page URL.</div>
+        <div class="action-impact">Expected impact: Proper crawl directives for search engines</div>
+      </div>
+      <span class="badge badge-high">High</span>
+    </div>
+
+  </div>
+
+  <!-- High Impact -->
+  <div class="section-title" style="font-size: 18px; color: var(--orange);">High Impact <span style="font-size: 14px; color: var(--text-muted); font-weight: 400;">&mdash; 1-4 hours each</span></div>
+  <div style="margin-bottom: 24px;">
+
+    <div class="action-item">
+      <div class="action-number">9</div>
+      <div class="action-content">
+        <div class="action-title">Add JSON-LD structured data (ProfessionalService + WebSite)</div>
+        <div class="action-desc">Create two JSON-LD blocks: (1) ProfessionalService/LocalBusiness with full company details, services, contact info, and Stockholm address. (2) WebSite schema with name and publisher. Test with Google&rsquo;s Rich Results Test before deploying.</div>
+        <div class="action-impact">Expected impact: Rich snippets in search, Google Knowledge Panel eligibility, local SEO boost</div>
+      </div>
+      <span class="badge badge-critical">Critical</span>
+    </div>
+
+    <div class="action-item">
+      <div class="action-number">10</div>
+      <div class="action-content">
+        <div class="action-title">Expand service descriptions from 2 sentences to 200+ words each</div>
+        <div class="action-desc">For each of the 4 services (S&auml;ker F&ouml;r&auml;ndring, IT-Arkitektur, Systemutveckling, Projektledning), add: detailed scope, target audience, technologies used, your methodology, and a concrete example or outcome. Naturally integrate LSI keywords from the competitor analysis.</div>
+        <div class="action-impact">Expected impact: 800-1,200 additional words of keyword-rich content, matching competitor depth</div>
+      </div>
+      <span class="badge badge-high">High</span>
+    </div>
+
+    <div class="action-item">
+      <div class="action-number">11</div>
+      <div class="action-content">
+        <div class="action-title">Add FAQ section with FAQPage schema</div>
+        <div class="action-desc">Create 6-8 questions targeting common search queries: &ldquo;Vad kostar en IT-konsult?&rdquo;, &ldquo;Hur hj&auml;lper en IT-konsult med NIS2?&rdquo;, &ldquo;Vad inneb&auml;r IT-r&aring;dgivning?&rdquo;, etc. Wrap in FAQPage JSON-LD schema.</div>
+        <div class="action-impact">Expected impact: Featured snippet eligibility, 300+ additional words, new keyword targets</div>
+      </div>
+      <span class="badge badge-high">High</span>
+    </div>
+
+    <div class="action-item">
+      <div class="action-number">12</div>
+      <div class="action-content">
+        <div class="action-title">Convert images to WebP format</div>
+        <div class="action-desc">Convert all 6 PNG images to WebP. Use &lt;picture&gt; elements with WebP as primary and PNG as fallback. Remove the unused hero-bg.png file.</div>
+        <div class="action-impact">Expected impact: 30-50% smaller image files, faster page load</div>
+      </div>
+      <span class="badge badge-medium">Medium</span>
+    </div>
+
+    <div class="action-item">
+      <div class="action-number">13</div>
+      <div class="action-content">
+        <div class="action-title">Switch from Tailwind CDN to production build</div>
+        <div class="action-desc">Set up a local Tailwind CSS build with PostCSS and PurgeCSS. This will reduce the CSS from ~300KB+ to likely under 30KB by removing unused utilities.</div>
+        <div class="action-impact">Expected impact: 90%+ CSS size reduction, significantly faster page load</div>
+      </div>
+      <span class="badge badge-medium">Medium</span>
+    </div>
+
+  </div>
+
+  <!-- Strategic Initiatives -->
+  <div class="section-title" style="font-size: 18px; color: var(--purple);">Strategic Initiatives <span style="font-size: 14px; color: var(--text-muted); font-weight: 400;">&mdash; ongoing</span></div>
+  <div style="margin-bottom: 24px;">
+
+    <div class="action-item">
+      <div class="action-number">14</div>
+      <div class="action-content">
+        <div class="action-title">Register on Google Business Profile</div>
+        <div class="action-desc">Create a verified Google Business Profile for &ldquo;iBunn&rdquo; / &ldquo;Bunn Consulting AB&rdquo; with your Stockholm address. This is essential for local SEO and appearing in Google Maps results. Link it to your schema markup.</div>
+        <div class="action-impact">Expected impact: Local search visibility in Stockholm, Google Maps presence</div>
+      </div>
+      <span class="badge badge-high">High</span>
+    </div>
+
+    <div class="action-item">
+      <div class="action-number">15</div>
+      <div class="action-content">
+        <div class="action-title">Add a &ldquo;Varf&ouml;r v&auml;lja iBunn?&rdquo; section with differentiators</div>
+        <div class="action-desc">Expand your core values (S&auml;kerhet, Engagemang, Proaktivitet) into a full section explaining what makes iBunn different. Include team expertise, industry experience, and your approach to client relationships.</div>
+        <div class="action-impact">Expected impact: E-E-A-T signals, improved conversion rate</div>
+      </div>
+      <span class="badge badge-high">High</span>
+    </div>
+
+    <div class="action-item">
+      <div class="action-number">16</div>
+      <div class="action-content">
+        <div class="action-title">Add client testimonials or case studies</div>
+        <div class="action-desc">Even 2-3 brief client quotes with company names add powerful trust signals. Long-term, create detailed case study summaries showing problems solved and outcomes achieved.</div>
+        <div class="action-impact">Expected impact: Trust signals, social proof, improved conversion</div>
+      </div>
+      <span class="badge badge-medium">Medium</span>
+    </div>
+
+    <div class="action-item">
+      <div class="action-number">17</div>
+      <div class="action-content">
+        <div class="action-title">Consider a blog for long-tail keyword targeting</div>
+        <div class="action-desc">A blog with articles like &ldquo;Guide till NIS2 f&ouml;r svenska f&ouml;retag&rdquo;, &ldquo;Hur v&auml;ljer man r&auml;tt IT-konsult i Stockholm?&rdquo;, and &ldquo;GDPR-checklista f&ouml;r sm&aring;f&ouml;retag&rdquo; would target informational queries that funnel into your consulting services.</div>
+        <div class="action-impact">Expected impact: Long-term organic traffic growth, topical authority building</div>
+      </div>
+      <span class="badge badge-medium">Medium</span>
+    </div>
+
+    <div class="action-item">
+      <div class="action-number">18</div>
+      <div class="action-content">
+        <div class="action-title">Configure production hosting with security headers</div>
+        <div class="action-desc">When deploying, ensure: HTTPS with valid SSL, HSTS header, Content-Security-Policy, X-Content-Type-Options, X-Frame-Options, Referrer-Policy, gzip/brotli compression, and proper cache headers for static assets.</div>
+        <div class="action-impact">Expected impact: Security score, slight ranking benefit, professional signals</div>
+      </div>
+      <span class="badge badge-medium">Medium</span>
+    </div>
+
+  </div>
+
+  <!-- Full Checklist -->
+  <div class="section-title" style="font-size: 18px; margin-top: 32px;">Full Implementation Checklist</div>
+  <div class="section-subtitle">Every actionable recommendation in one checklist</div>
+  <div class="card">
+    <div class="checklist-item">
+      <div class="check-icon fail">&#10007;</div>
+      <div class="check-text">Add meta description (150-160 chars, include &ldquo;IT-konsult Stockholm&rdquo;)</div>
+    </div>
+    <div class="checklist-item">
+      <div class="check-icon fail">&#10007;</div>
+      <div class="check-text">Improve title tag to 50-60 chars with primary keyword and location</div>
+    </div>
+    <div class="checklist-item">
+      <div class="check-icon fail">&#10007;</div>
+      <div class="check-text">Add canonical tag pointing to production URL</div>
+    </div>
+    <div class="checklist-item">
+      <div class="check-icon fail">&#10007;</div>
+      <div class="check-text">Add Open Graph tags (og:title, og:description, og:image, og:url, og:type)</div>
+    </div>
+    <div class="checklist-item">
+      <div class="check-icon fail">&#10007;</div>
+      <div class="check-text">Add Twitter Card tags (twitter:card, twitter:title, twitter:description, twitter:image)</div>
+    </div>
+    <div class="checklist-item">
+      <div class="check-icon fail">&#10007;</div>
+      <div class="check-text">Add favicon (ICO, Apple Touch Icon, SVG)</div>
+    </div>
+    <div class="checklist-item">
+      <div class="check-icon fail">&#10007;</div>
+      <div class="check-text">Add ProfessionalService/LocalBusiness JSON-LD schema</div>
+    </div>
+    <div class="checklist-item">
+      <div class="check-icon fail">&#10007;</div>
+      <div class="check-text">Add WebSite JSON-LD schema</div>
+    </div>
+    <div class="checklist-item">
+      <div class="check-icon fail">&#10007;</div>
+      <div class="check-text">Create robots.txt with Allow and Sitemap directives</div>
+    </div>
+    <div class="checklist-item">
+      <div class="check-icon fail">&#10007;</div>
+      <div class="check-text">Create sitemap.xml with page URL and lastmod</div>
+    </div>
+    <div class="checklist-item">
+      <div class="check-icon fail">&#10007;</div>
+      <div class="check-text">Add font preconnect/preload hints</div>
+    </div>
+    <div class="checklist-item">
+      <div class="check-icon fail">&#10007;</div>
+      <div class="check-text">Add loading=&ldquo;lazy&rdquo; to below-fold images</div>
+    </div>
+    <div class="checklist-item">
+      <div class="check-icon fail">&#10007;</div>
+      <div class="check-text">Convert images from PNG to WebP format</div>
+    </div>
+    <div class="checklist-item">
+      <div class="check-icon fail">&#10007;</div>
+      <div class="check-text">Switch Tailwind CDN to production build with purging</div>
+    </div>
+    <div class="checklist-item">
+      <div class="check-icon fail">&#10007;</div>
+      <div class="check-text">Expand page content from ~200 to 1,500+ words</div>
+    </div>
+    <div class="checklist-item">
+      <div class="check-icon fail">&#10007;</div>
+      <div class="check-text">Expand each service description to 200+ words</div>
+    </div>
+    <div class="checklist-item">
+      <div class="check-icon fail">&#10007;</div>
+      <div class="check-text">Add FAQ section with FAQPage schema (6-8 questions)</div>
+    </div>
+    <div class="checklist-item">
+      <div class="check-icon fail">&#10007;</div>
+      <div class="check-text">Add &ldquo;Varf&ouml;r v&auml;lja iBunn?&rdquo; differentiator section</div>
+    </div>
+    <div class="checklist-item">
+      <div class="check-icon fail">&#10007;</div>
+      <div class="check-text">Make image alt text more descriptive and keyword-rich</div>
+    </div>
+    <div class="checklist-item">
+      <div class="check-icon fail">&#10007;</div>
+      <div class="check-text">Register Google Business Profile for Stockholm</div>
+    </div>
+    <div class="checklist-item">
+      <div class="check-icon fail">&#10007;</div>
+      <div class="check-text">Add client testimonials or case studies</div>
+    </div>
+    <div class="checklist-item">
+      <div class="check-icon fail">&#10007;</div>
+      <div class="check-text">Configure security headers on production hosting</div>
+    </div>
+    <div class="checklist-item">
+      <div class="check-icon fail">&#10007;</div>
+      <div class="check-text">Remove unused hero-bg.png from assets folder</div>
+    </div>
+  </div>
+
+</div>
+</div>
+
+<script>
+function switchTab(tabId) {
+  document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById('tab-' + tabId).classList.add('active');
+  event.target.closest('.tab-btn').classList.add('active');
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+document.querySelectorAll('.collapsible-header').forEach(header => {
+  header.addEventListener('click', () => {
+    header.closest('.collapsible').classList.toggle('open');
+  });
+});
+</script>
+
+</body>
+</html>

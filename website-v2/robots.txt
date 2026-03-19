@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://ibunn.se/sitemap.xml
