@@ -3,9 +3,10 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>iBunn — IT-konsultföretag | IT-rådgivning, Systemutveckling & Projektledning</title>
+  <title>iBunn — IT-konsultföretag | IT-rådgivning, Systemutveckling &amp; Projektledning</title>
   <meta name="description" content="iBunn hjälper företag att bli smartare, effektivare och säkrare. Vi erbjuder IT-rådgivning, systemutveckling, IT-arkitektur och projektledning med fokus på säkerhet, GDPR och NIS2.">
   <link rel="canonical" href="https://ibunn.se/">
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
 
   <!-- Open Graph -->
   <meta property="og:type" content="website">
@@ -14,17 +15,18 @@
   <meta property="og:description" content="Vi hjälper företag att bli smartare, effektivare och säkrare genom IT-rådgivning, systemutveckling, IT-arkitektur och projektledning.">
   <meta property="og:url" content="https://ibunn.se/">
   <meta property="og:site_name" content="iBunn">
-  <!-- <meta property="og:image" content="https://ibunn.se/assets/og-image.png"> -->
+  <meta property="og:image" content="https://ibunn.se/assets/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
 
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="iBunn — IT-konsultföretag">
   <meta name="twitter:description" content="Vi hjälper företag att bli smartare, effektivare och säkrare genom IT-rådgivning, systemutveckling, IT-arkitektur och projektledning.">
-  <!-- <meta name="twitter:image" content="https://ibunn.se/assets/og-image.png"> -->
+  <meta name="twitter:image" content="https://ibunn.se/assets/og-image.png">
 
-  <!-- Favicon (uncomment when you have one) -->
-  <!-- <link rel="icon" href="/favicon.ico" sizes="any"> -->
-  <!-- <link rel="apple-touch-icon" href="/apple-touch-icon.png"> -->
+  <!-- Noscript fallback -->
+  <noscript><style>.reveal,.reveal-card{opacity:1!important;transform:none!important;transition:none!important}</style></noscript>
 
   <!-- Preconnect for faster font loading -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -55,8 +57,156 @@
 
     html { scroll-behavior: smooth; }
 
-    /* Nav scroll effect */
+    /* Preloader */
+    #preloader {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: #090915;
+      z-index: 9999;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: opacity 0.6s ease, visibility 0.6s ease;
+    }
+    #preloader.loaded {
+      opacity: 0;
+      visibility: hidden;
+    }
+    #preloader .preloader-logo {
+      font-size: 2rem;
+      font-weight: 700;
+      color: #E8E4DB;
+      letter-spacing: -0.02em;
+      animation: preloaderPulse 1.5s ease-in-out infinite;
+    }
+    #preloader .preloader-bar {
+      position: absolute;
+      bottom: 48%;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 60px;
+      height: 2px;
+      background: rgba(169, 177, 135, 0.15);
+      border-radius: 1px;
+      overflow: hidden;
+      margin-top: 1.5rem;
+    }
+    #preloader .preloader-bar::after {
+      content: '';
+      display: block;
+      width: 50%;
+      height: 100%;
+      background: #A9B187;
+      border-radius: 1px;
+      animation: preloaderSlide 1s ease-in-out infinite;
+    }
+    @keyframes preloaderPulse {
+      0%, 100% { opacity: 0.4; }
+      50% { opacity: 1; }
+    }
+    @keyframes preloaderSlide {
+      0% { transform: translateX(-100%); }
+      100% { transform: translateX(200%); }
+    }
+
+    /* Hero entrance animation */
+    .hero-animate {
+      opacity: 0;
+      transform: translateY(30px);
+      animation: heroEntrance 0.8s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+    }
+    .hero-animate:nth-child(1) { animation-delay: 0.1s; }
+    .hero-animate:nth-child(2) { animation-delay: 0.25s; }
+    .hero-animate:nth-child(3) { animation-delay: 0.4s; }
+    .hero-animate:nth-child(4) { animation-delay: 0.55s; }
+    .hero-animate:nth-child(5) { animation-delay: 0.7s; }
+    @keyframes heroEntrance {
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Stats counter section — cyber theme */
+    .stats-section {
+      position: relative;
+    }
+    .stat-item {
+      text-align: center;
+      padding: 2rem 1.5rem;
+      position: relative;
+      background: rgba(10, 17, 24, 0.6);
+      border: 1px solid rgba(169, 177, 135, 0.08);
+      border-radius: 12px;
+      backdrop-filter: blur(8px);
+      transition: border-color 0.4s ease, box-shadow 0.4s ease;
+    }
+    .stat-item:hover {
+      border-color: rgba(169, 177, 135, 0.25);
+      box-shadow: 0 0 30px rgba(169, 177, 135, 0.06), inset 0 1px 0 rgba(169, 177, 135, 0.1);
+    }
+    .stat-item::before {
+      content: '';
+      position: absolute;
+      top: -1px;
+      left: 20%;
+      right: 20%;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(169, 177, 135, 0.3), transparent);
+    }
+    .stat-number-wrapper {
+      overflow: hidden;
+      height: 3.5rem;
+      display: flex;
+      align-items: flex-end;
+      justify-content: center;
+      margin-bottom: 0.75rem;
+    }
+    .stat-number {
+      font-size: 3rem;
+      font-weight: 700;
+      color: #A9B187;
+      line-height: 1;
+      transform: translateY(100%);
+      transition: transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+    .stat-number.counted {
+      transform: translateY(0);
+    }
+    .stat-label {
+      font-size: 0.65rem;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      color: rgba(232, 228, 219, 0.3);
+    }
+
+    /* Nav auto-hide */
+    #navbar {
+      transform: translateY(0);
+      transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1), background 0.3s ease, opacity 0.4s ease;
+    }
+    #navbar.nav-hidden {
+      transform: translateY(-100%);
+      opacity: 0;
+    }
     nav.scrolled { background: rgba(9, 9, 21, 0.95); }
+
+    /* Language toggle highlight */
+    .lang-highlight {
+      animation: langGlow 1.5s ease-in-out 2s 3;
+    }
+    @keyframes langGlow {
+      0%, 100% { box-shadow: none; }
+      50% { box-shadow: 0 0 14px rgba(169, 177, 135, 0.5), 0 0 4px rgba(169, 177, 135, 0.3); border-color: rgba(169, 177, 135, 0.4); }
+    }
+
+    /* Language switch transition */
+    [data-i18n], [data-i18n-ph] {
+      transition: opacity 0.25s ease;
+    }
+    .lang-fading {
+      opacity: 0 !important;
+    }
 
     /* Subtle fade-in on scroll */
     .reveal {
@@ -69,7 +219,18 @@
       transform: translateY(0);
     }
 
-    /* Fixed background */
+    /* Staggered card reveal */
+    .reveal-card {
+      opacity: 0;
+      transform: translateY(40px);
+      transition: opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1), transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+    .reveal-card.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Fixed background video */
     .fixed-bg {
       position: fixed;
       top: 0;
@@ -78,7 +239,14 @@
       height: 100%;
       z-index: -2;
       object-fit: cover;
-      object-position: right top;
+    }
+
+    /* Video crossfade looping */
+    .video-bg {
+      transition: opacity 1.5s ease-in-out;
+    }
+    .video-bg.fade-out {
+      opacity: 0;
     }
 
     /* Scroll-driven darkening overlay */
@@ -102,6 +270,12 @@
     .service-card:hover {
       transform: translateY(-6px);
       box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+    }
+
+    /* Contact card reveal */
+    .contact-card {
+      position: relative;
+      overflow: hidden;
     }
 
     /* Input focus */
@@ -142,6 +316,177 @@
     }
     .btn-outline:hover {
       background: rgba(169, 177, 135, 0.1);
+    }
+
+    /* Language toggle */
+    .lang-toggle {
+      display: flex;
+      align-items: center;
+      gap: 2px;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 8px;
+      padding: 2px;
+      font-size: 11px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+    .lang-toggle button {
+      padding: 4px 10px;
+      border-radius: 6px;
+      transition: all 0.25s ease;
+      color: rgba(232, 228, 219, 0.4);
+      font-weight: 600;
+    }
+    .lang-toggle button.active {
+      background: rgba(169, 177, 135, 0.2);
+      color: #A9B187;
+    }
+
+    /* Chatbot styles */
+    .chat-fab {
+      position: fixed;
+      bottom: 28px;
+      right: 28px;
+      z-index: 100;
+      width: 56px;
+      height: 56px;
+      border-radius: 16px;
+      background: #A9B187;
+      color: #090915;
+      border: none;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 8px 32px rgba(169, 177, 135, 0.3);
+      transition: all 0.3s ease;
+    }
+    .chat-fab:hover {
+      transform: translateY(-3px) scale(1.05);
+      box-shadow: 0 12px 40px rgba(169, 177, 135, 0.4);
+    }
+    .chat-fab svg { width: 24px; height: 24px; }
+
+    .chat-panel {
+      position: fixed;
+      bottom: 96px;
+      right: 28px;
+      z-index: 100;
+      width: 400px;
+      max-width: calc(100vw - 32px);
+      height: 520px;
+      max-height: calc(100vh - 140px);
+      background: rgba(10, 17, 24, 0.95);
+      backdrop-filter: blur(24px);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 20px;
+      display: none;
+      flex-direction: column;
+      overflow: hidden;
+      box-shadow: 0 24px 80px rgba(0, 0, 0, 0.6);
+    }
+    .chat-panel.open {
+      display: flex;
+      animation: chatSlideUp 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+    @keyframes chatSlideUp {
+      from { opacity: 0; transform: translateY(16px) scale(0.96); }
+      to { opacity: 1; transform: translateY(0) scale(1); }
+    }
+    .chat-header {
+      padding: 16px 20px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .chat-messages {
+      flex: 1;
+      overflow-y: auto;
+      padding: 16px 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .chat-messages::-webkit-scrollbar { width: 4px; }
+    .chat-messages::-webkit-scrollbar-track { background: transparent; }
+    .chat-messages::-webkit-scrollbar-thumb { background: rgba(169, 177, 135, 0.3); border-radius: 2px; }
+    .chat-bubble {
+      max-width: 85%;
+      padding: 10px 14px;
+      border-radius: 14px;
+      font-size: 13px;
+      line-height: 1.5;
+      word-wrap: break-word;
+    }
+    .chat-bubble.bot {
+      background: rgba(255, 255, 255, 0.06);
+      color: #E8E4DB;
+      align-self: flex-start;
+      border-bottom-left-radius: 4px;
+    }
+    .chat-bubble.user {
+      background: rgba(169, 177, 135, 0.2);
+      color: #E8E4DB;
+      align-self: flex-end;
+      border-bottom-right-radius: 4px;
+    }
+    .chat-typing {
+      display: flex;
+      gap: 4px;
+      padding: 10px 14px;
+      align-self: flex-start;
+    }
+    .chat-typing span {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: rgba(169, 177, 135, 0.5);
+      animation: typingDot 1.4s infinite;
+    }
+    .chat-typing span:nth-child(2) { animation-delay: 0.2s; }
+    .chat-typing span:nth-child(3) { animation-delay: 0.4s; }
+    @keyframes typingDot {
+      0%, 60%, 100% { opacity: 0.3; transform: translateY(0); }
+      30% { opacity: 1; transform: translateY(-4px); }
+    }
+    .chat-input-area {
+      padding: 12px 16px;
+      border-top: 1px solid rgba(255, 255, 255, 0.06);
+      display: flex;
+      gap: 8px;
+    }
+    .chat-input-area input {
+      flex: 1;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 10px;
+      padding: 10px 14px;
+      color: #E8E4DB;
+      font-size: 13px;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+    .chat-input-area input:focus {
+      border-color: rgba(169, 177, 135, 0.4);
+    }
+    .chat-input-area input::placeholder {
+      color: rgba(232, 228, 219, 0.25);
+    }
+    .chat-input-area button {
+      background: #A9B187;
+      color: #090915;
+      border: none;
+      border-radius: 10px;
+      padding: 0 14px;
+      cursor: pointer;
+      transition: all 0.2s;
+      display: flex;
+      align-items: center;
+    }
+    .chat-input-area button:hover {
+      filter: brightness(1.1);
     }
 
     /* Scrollbar */
@@ -191,41 +536,66 @@
 </head>
 <body class="bg-midnight text-cream antialiased">
 
-<!-- Fixed full-page background image -->
-<img src="assets/hero-bg-v2.png" alt="" class="fixed-bg" aria-hidden="true">
+<!-- Preloader -->
+<div id="preloader">
+  <div class="preloader-logo">iBunn</div>
+  <div class="preloader-bar"></div>
+</div>
+
+<!-- Fixed full-page background video (dual-video crossfade for seamless loop) -->
+<video id="video-a" autoplay muted playsinline class="fixed-bg video-bg" aria-hidden="true">
+  <source src="assets/hero-video.mp4" type="video/mp4">
+</video>
+<video id="video-b" muted playsinline class="fixed-bg video-bg fade-out" aria-hidden="true">
+  <source src="assets/hero-video.mp4" type="video/mp4">
+</video>
 
 <!-- Scroll-driven darkening overlay -->
 <div id="scroll-overlay"></div>
 
 <!-- Navigation -->
-<nav id="navbar" class="fixed top-0 w-full z-50 bg-midnight/80 backdrop-blur-xl border-b border-white/5 transition-all duration-300">
+<nav id="navbar" class="fixed top-0 w-full z-50 bg-midnight/80 backdrop-blur-xl border-b border-white/5 nav-hidden">
   <div class="max-w-7xl mx-auto px-6 lg:px-12 flex justify-between items-center h-16">
     <a href="#" class="text-xl font-bold tracking-tight text-cream">iBunn</a>
 
     <!-- Desktop links -->
     <div class="hidden md:flex items-center space-x-8">
-      <a href="#hero" class="text-sm font-medium uppercase tracking-widest text-cream/60 hover:text-cream transition-colors">Hem</a>
-      <a href="#services" class="text-sm font-medium uppercase tracking-widest text-cream/60 hover:text-cream transition-colors">Våra tjänster</a>
-      <a href="#contact" class="text-sm font-medium uppercase tracking-widest text-cream/60 hover:text-cream transition-colors">Kontakta oss</a>
+      <a href="#hero" class="text-sm font-medium uppercase tracking-widest text-cream/60 hover:text-cream transition-colors" data-i18n="nav_home">Hem</a>
+      <a href="#services" class="text-sm font-medium uppercase tracking-widest text-cream/60 hover:text-cream transition-colors" data-i18n="nav_services">Våra tjänster</a>
+      <a href="#contact" class="text-sm font-medium uppercase tracking-widest text-cream/60 hover:text-cream transition-colors" data-i18n="nav_contact">Kontakta oss</a>
     </div>
 
-    <a href="#contact" class="hidden md:inline-block btn-sage px-5 py-2 text-xs font-bold rounded-lg uppercase tracking-wider">
-      Kontakta oss
-    </a>
+    <div class="hidden md:flex items-center space-x-4">
+      <!-- Language toggle -->
+      <div class="lang-toggle lang-highlight">
+        <button id="lang-sv" class="active" onclick="setLanguage('sv')">SV</button>
+        <button id="lang-en" onclick="setLanguage('en')">EN</button>
+      </div>
+
+      <a href="#contact" class="btn-sage px-5 py-2 text-xs font-bold rounded-lg uppercase tracking-wider" data-i18n="nav_cta">
+        Kontakta oss
+      </a>
+    </div>
 
     <!-- Mobile menu button -->
-    <button id="menu-toggle" class="md:hidden text-cream">
-      <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 6h16M4 12h16M4 18h16"/></svg>
-    </button>
+    <div class="flex md:hidden items-center space-x-3">
+      <div class="lang-toggle">
+        <button id="lang-sv-m" class="active" onclick="setLanguage('sv')">SV</button>
+        <button id="lang-en-m" onclick="setLanguage('en')">EN</button>
+      </div>
+      <button id="menu-toggle" class="text-cream">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 6h16M4 12h16M4 18h16"/></svg>
+      </button>
+    </div>
   </div>
 
   <!-- Mobile menu -->
   <div id="mobile-menu" class="hidden md:hidden bg-midnight/95 backdrop-blur-xl border-t border-white/5">
     <div class="px-6 py-6 space-y-4">
-      <a href="#hero" class="block text-sm uppercase tracking-widest text-cream/60 hover:text-cream transition-colors">Hem</a>
-      <a href="#services" class="block text-sm uppercase tracking-widest text-cream/60 hover:text-cream transition-colors">Våra tjänster</a>
-      <a href="#contact" class="block text-sm uppercase tracking-widest text-cream/60 hover:text-cream transition-colors">Kontakta oss</a>
-      <a href="#contact" class="block btn-sage px-5 py-2 text-xs font-bold rounded-lg uppercase tracking-wider text-center mt-4">Kontakta oss</a>
+      <a href="#hero" class="block text-sm uppercase tracking-widest text-cream/60 hover:text-cream transition-colors" data-i18n="nav_home">Hem</a>
+      <a href="#services" class="block text-sm uppercase tracking-widest text-cream/60 hover:text-cream transition-colors" data-i18n="nav_services">Våra tjänster</a>
+      <a href="#contact" class="block text-sm uppercase tracking-widest text-cream/60 hover:text-cream transition-colors" data-i18n="nav_contact">Kontakta oss</a>
+      <a href="#contact" class="block btn-sage px-5 py-2 text-xs font-bold rounded-lg uppercase tracking-wider text-center mt-4" data-i18n="nav_cta">Kontakta oss</a>
     </div>
   </div>
 </nav>
@@ -235,31 +605,58 @@
 
   <div class="relative z-10 max-w-7xl mx-auto px-6 lg:px-12 py-32">
     <div class="max-w-3xl">
-      <p class="text-sage text-sm uppercase tracking-[0.3em] mb-6 font-medium">IT-konsultföretag</p>
-      <h1 class="text-6xl md:text-7xl lg:text-8xl font-bold tracking-tight leading-[0.95] mb-8 uppercase">
+      <p class="hero-animate text-sage text-sm uppercase tracking-[0.3em] mb-6 font-medium" data-i18n="hero_label">IT-konsultföretag</p>
+      <h1 class="hero-animate text-6xl md:text-7xl lg:text-8xl font-bold tracking-tight leading-[0.95] mb-8 uppercase" data-i18n="hero_heading">
         Vi är<br>iBunn
       </h1>
-      <p class="text-lg md:text-xl text-cream/70 leading-relaxed max-w-xl mb-6">
+      <p class="hero-animate text-lg md:text-xl text-cream/70 leading-relaxed max-w-xl mb-6" data-i18n="hero_desc">
         Vi är IT-företaget som hjälper våra kunder att bli smartare, effektivare och säkrare. Genom innovativa lösningar inom IT-rådgivning, systemutveckling och projektledning driver vi framtiden.
       </p>
-      <p class="text-cream/50 leading-relaxed max-w-xl mb-10">
-        Med ledorden Säkerhet, Engagemang och Proaktivitet skapar vi bestående värde för era verksamheter.
+      <p class="hero-animate text-cream/50 leading-relaxed max-w-xl mb-10" data-i18n="hero_sub">
+        Allt vi gör bygger på tre principer: säkerhet, engagemang och proaktivitet.
       </p>
-      <div class="flex flex-col sm:flex-row gap-4">
-        <a href="#services" class="btn-sage px-8 py-4 font-bold rounded-lg uppercase tracking-widest text-sm text-center">
+      <div class="hero-animate flex flex-col sm:flex-row gap-4">
+        <a href="#services" class="btn-sage px-8 py-4 font-bold rounded-lg uppercase tracking-widest text-sm text-center" data-i18n="hero_cta1">
           Upplev Våra Tjänster
         </a>
-        <a href="#contact" class="btn-outline px-8 py-4 font-medium rounded-lg uppercase tracking-widest text-sm text-center">
+        <a href="#contact" class="btn-outline px-8 py-4 font-medium rounded-lg uppercase tracking-widest text-sm text-center" data-i18n="hero_cta2">
           Kontakta oss
         </a>
       </div>
     </div>
   </div>
 
-  <!-- Scroll indicator -->
-  <div class="absolute bottom-8 left-1/2 -translate-x-1/2 z-10 flex flex-col items-center space-y-2">
-    <span class="text-[10px] uppercase tracking-[0.3em] text-cream/40">Scrolla ner</span>
-    <div class="w-px h-8 bg-gradient-to-b from-sage/50 to-transparent animate-pulse"></div>
+</section>
+
+<!-- Stats Section -->
+<section class="stats-section relative py-24">
+  <div class="max-w-7xl mx-auto px-6 lg:px-12">
+    <div class="grid grid-cols-2 lg:grid-cols-4 gap-5 md:gap-8 reveal">
+      <div class="stat-item">
+        <div class="stat-number-wrapper">
+          <div class="stat-number" data-count="10" data-start="3">0</div>
+        </div>
+        <div class="stat-label" data-i18n="stat1_label">Års erfarenhet</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-number-wrapper">
+          <div class="stat-number" data-count="50">0</div>
+        </div>
+        <div class="stat-label" data-i18n="stat2_label">Genomförda projekt</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-number-wrapper">
+          <div class="stat-number" data-count="100" data-suffix="%">0</div>
+        </div>
+        <div class="stat-label" data-i18n="stat3_label">GDPR-efterlevnad</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-number-wrapper">
+          <div class="stat-number" data-count="24" data-suffix="h">0</div>
+        </div>
+        <div class="stat-label" data-i18n="stat4_label">Svarstid</div>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -267,80 +664,60 @@
 <section id="services" class="relative py-24 lg:py-32">
   <div class="max-w-7xl mx-auto px-6 lg:px-12">
     <div class="text-center mb-16 reveal">
-      <p class="text-sage text-sm uppercase tracking-[0.3em] mb-4 font-medium">Våra Specialistområden</p>
-      <h2 class="text-4xl md:text-5xl font-bold tracking-tight text-cream leading-tight">
+      <p class="text-sage text-sm uppercase tracking-[0.3em] mb-4 font-medium" data-i18n="services_label">Våra Specialistområden</p>
+      <h2 class="text-4xl md:text-5xl font-bold tracking-tight text-cream leading-tight" data-i18n="services_heading">
         Hur kan vi hjälpa dig?
       </h2>
     </div>
 
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 reveal">
-      <!-- Service 1: Saker Radgivning -->
-      <div class="service-card rounded-xl overflow-hidden bg-[#0A1118] border border-white/5">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+      <!-- Service 1 -->
+      <div class="service-card reveal-card rounded-xl bg-[#0A1118] border border-white/5" style="transition-delay: 0s">
         <div class="aspect-[4/3] overflow-hidden">
-          <img
-            src="assets/service-security.png"
-            alt="Säker IT-rådgivning och GDPR-efterlevnad — iBunn"
-            class="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
-            loading="lazy"
-          >
+          <img src="assets/service-security.png" alt="Säker IT-rådgivning och GDPR-efterlevnad — iBunn" class="w-full h-full object-cover hover:scale-105 transition-transform duration-500" loading="lazy">
         </div>
-        <div class="p-6">
-          <h3 class="text-lg font-bold text-cream mb-2">Säker Förändring på Djup</h3>
-          <p class="text-cream/50 text-sm leading-relaxed">
+        <div class="p-6 relative z-10">
+          <h3 class="text-lg font-bold text-cream mb-2" data-i18n="svc1_title">Säker Förändring på Djup</h3>
+          <p class="text-cream/50 text-sm leading-relaxed" data-i18n="svc1_desc">
             Vi hjälper organisationer med säker transformation, riskanalys och efterlevnad av regelverk som GDPR och NIS2. Trygg förändring från grunden.
           </p>
         </div>
       </div>
 
-      <!-- Service 2: IT-Arkitektur -->
-      <div class="service-card rounded-xl overflow-hidden bg-[#0A1118] border border-white/5">
+      <!-- Service 2 -->
+      <div class="service-card reveal-card rounded-xl bg-[#0A1118] border border-white/5" style="transition-delay: 0.12s">
         <div class="aspect-[4/3] overflow-hidden">
-          <img
-            src="assets/service-architecture.png"
-            alt="Skalbar IT-arkitektur och infrastruktur — iBunn"
-            class="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
-            loading="lazy"
-          >
+          <img src="assets/service-architecture.png" alt="Skalbar IT-arkitektur och infrastruktur — iBunn" class="w-full h-full object-cover hover:scale-105 transition-transform duration-500" loading="lazy">
         </div>
-        <div class="p-6">
-          <h3 class="text-lg font-bold text-cream mb-2">IT-Arkitektur</h3>
-          <p class="text-cream/50 text-sm leading-relaxed">
+        <div class="p-6 relative z-10">
+          <h3 class="text-lg font-bold text-cream mb-2" data-i18n="svc2_title">IT-Arkitektur</h3>
+          <p class="text-cream/50 text-sm leading-relaxed" data-i18n="svc2_desc">
             Vi bygger och underhåller IT-infrastruktur och arkitektur som är skalbar, säker och framtidssäkrad för era behov.
           </p>
         </div>
       </div>
 
-      <!-- Service 3: Systemutveckling -->
-      <div class="service-card rounded-xl overflow-hidden bg-[#0A1118] border border-white/5">
+      <!-- Service 3 -->
+      <div class="service-card reveal-card rounded-xl bg-[#0A1118] border border-white/5" style="transition-delay: 0.24s">
         <div class="aspect-[4/3] overflow-hidden">
-          <img
-            src="assets/service-development.png"
-            alt="Skräddarsydd systemutveckling och applikationer — iBunn"
-            class="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
-            loading="lazy"
-          >
+          <img src="assets/service-development.png" alt="Skräddarsydd systemutveckling och applikationer — iBunn" class="w-full h-full object-cover hover:scale-105 transition-transform duration-500" loading="lazy">
         </div>
-        <div class="p-6">
-          <h3 class="text-lg font-bold text-cream mb-2">Systemutveckling</h3>
-          <p class="text-cream/50 text-sm leading-relaxed">
+        <div class="p-6 relative z-10">
+          <h3 class="text-lg font-bold text-cream mb-2" data-i18n="svc3_title">Systemutveckling</h3>
+          <p class="text-cream/50 text-sm leading-relaxed" data-i18n="svc3_desc">
             Skräddarsydda system och applikationer byggda med moderna teknologier. Från idé till produktion, vi levererar.
           </p>
         </div>
       </div>
 
-      <!-- Service 4: Projektledning -->
-      <div class="service-card rounded-xl overflow-hidden bg-[#0A1118] border border-white/5">
+      <!-- Service 4 -->
+      <div class="service-card reveal-card rounded-xl bg-[#0A1118] border border-white/5" style="transition-delay: 0.36s">
         <div class="aspect-[4/3] overflow-hidden">
-          <img
-            src="assets/service-management.png"
-            alt="Erfaren projektledning för IT-projekt — iBunn"
-            class="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
-            loading="lazy"
-          >
+          <img src="assets/service-management.png" alt="Erfaren projektledning för IT-projekt — iBunn" class="w-full h-full object-cover hover:scale-105 transition-transform duration-500" loading="lazy">
         </div>
-        <div class="p-6">
-          <h3 class="text-lg font-bold text-cream mb-2">Projektledning</h3>
-          <p class="text-cream/50 text-sm leading-relaxed">
+        <div class="p-6 relative z-10">
+          <h3 class="text-lg font-bold text-cream mb-2" data-i18n="svc4_title">Projektledning</h3>
+          <p class="text-cream/50 text-sm leading-relaxed" data-i18n="svc4_desc">
             Erfaren projektledning som levererar resultat i tid och inom budget. Vi håller era projekt på rätt kurs.
           </p>
         </div>
@@ -354,33 +731,35 @@
   <div class="max-w-3xl mx-auto px-6 lg:px-12">
     <!-- Floating card -->
     <div class="bg-[#0A1118] border border-white/10 rounded-2xl p-8 md:p-12 reveal shadow-2xl">
+      <!-- Netlify Forms -->
       <div class="text-center mb-10">
-        <p class="text-sage text-sm uppercase tracking-[0.3em] mb-4 font-medium">Ta nästa steg</p>
-        <h2 class="text-3xl md:text-4xl font-bold tracking-tight text-cream">Kontakta oss</h2>
-        <p class="text-cream/50 mt-4 max-w-lg mx-auto text-sm">
+        <p class="text-sage text-sm uppercase tracking-[0.3em] mb-4 font-medium" data-i18n="contact_label">Ta nästa steg</p>
+        <h2 class="text-3xl md:text-4xl font-bold tracking-tight text-cream" data-i18n="contact_heading">Kontakta oss</h2>
+        <p class="text-cream/50 mt-4 max-w-lg mx-auto text-sm" data-i18n="contact_desc">
           Kontakta oss idag för att inleda en konsultation om era IT-behov. Vi återkommer inom 24 timmar.
         </p>
       </div>
 
-      <form class="space-y-5" onsubmit="event.preventDefault(); document.getElementById('success-msg').classList.remove('hidden');">
+      <form name="contact" method="POST" data-netlify="true" class="space-y-5" onsubmit="event.preventDefault(); document.getElementById('success-msg').classList.remove('hidden');">
+        <input type="hidden" name="form-name" value="contact">
         <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
           <div>
-            <label class="block text-xs uppercase tracking-widest text-cream/60 mb-2 font-medium" for="company">Företags Namn</label>
-            <input class="form-input w-full bg-white/5 border border-white/10 rounded-lg py-3 px-4 text-cream placeholder-cream/30 transition-all" id="company" placeholder="Ert företag" type="text">
+            <label class="block text-xs uppercase tracking-widest text-cream/60 mb-2 font-medium" for="company" data-i18n="form_company">Företags Namn</label>
+            <input class="form-input w-full bg-white/5 border border-white/10 rounded-lg py-3 px-4 text-cream placeholder-cream/30 transition-all" id="company" data-i18n-ph="ph_company" placeholder="Ert företag" type="text">
           </div>
           <div>
             <label class="block text-xs uppercase tracking-widest text-cream/60 mb-2 font-medium" for="email">Email</label>
-            <input class="form-input w-full bg-white/5 border border-white/10 rounded-lg py-3 px-4 text-cream placeholder-cream/30 transition-all" id="email" placeholder="namn@företag.se" type="email">
+            <input class="form-input w-full bg-white/5 border border-white/10 rounded-lg py-3 px-4 text-cream placeholder-cream/30 transition-all" id="email" data-i18n-ph="ph_email" placeholder="namn@företag.se" type="email">
           </div>
         </div>
         <div>
-          <label class="block text-xs uppercase tracking-widest text-cream/60 mb-2 font-medium" for="message">Meddelande</label>
-          <textarea class="form-input w-full bg-white/5 border border-white/10 rounded-lg py-3 px-4 text-cream placeholder-cream/30 transition-all" id="message" placeholder="Beskriv era behov..." rows="4"></textarea>
+          <label class="block text-xs uppercase tracking-widest text-cream/60 mb-2 font-medium" for="message" data-i18n="form_message">Meddelande</label>
+          <textarea class="form-input w-full bg-white/5 border border-white/10 rounded-lg py-3 px-4 text-cream placeholder-cream/30 transition-all" id="message" data-i18n-ph="ph_message" placeholder="Beskriv era behov..." rows="4"></textarea>
         </div>
-        <button class="btn-sage w-full py-3.5 font-bold rounded-lg uppercase tracking-widest text-sm" type="submit">
+        <button class="btn-sage w-full py-3.5 font-bold rounded-lg uppercase tracking-widest text-sm" type="submit" data-i18n="form_submit">
           Skicka Förfrågan
         </button>
-        <div id="success-msg" class="hidden text-sage text-center text-sm font-medium pt-2">
+        <div id="success-msg" class="hidden text-sage text-center text-sm font-medium pt-2" data-i18n="form_success">
           Tack! Vi hör av oss snart.
         </div>
       </form>
@@ -420,28 +799,193 @@
   <div class="max-w-7xl mx-auto px-6 lg:px-12">
     <div class="text-center mb-8">
       <div class="text-2xl font-bold tracking-tight text-cream mb-4">iBunn</div>
-      <p class="text-cream/50 text-sm max-w-md mx-auto leading-relaxed">
+      <p class="text-cream/50 text-sm max-w-md mx-auto leading-relaxed" data-i18n="footer_desc">
         Vi är IT-företaget som hjälper våra kunder med bland annat IT-rådgivning, systemutveckling och projektledning.
       </p>
     </div>
 
     <div class="flex flex-col md:flex-row justify-center items-center space-y-4 md:space-y-0 md:space-x-12 mb-8">
-      <a href="#hero" class="text-[11px] uppercase tracking-[0.2em] text-cream/40 hover:text-cream transition-colors">Hem</a>
-      <a href="#services" class="text-[11px] uppercase tracking-[0.2em] text-cream/40 hover:text-cream transition-colors">Våra tjänster</a>
-      <a href="#contact" class="text-[11px] uppercase tracking-[0.2em] text-cream/40 hover:text-cream transition-colors">Kontakta oss</a>
+      <a href="#hero" class="text-[11px] uppercase tracking-[0.2em] text-cream/40 hover:text-cream transition-colors" data-i18n="nav_home">Hem</a>
+      <a href="#services" class="text-[11px] uppercase tracking-[0.2em] text-cream/40 hover:text-cream transition-colors" data-i18n="nav_services">Våra tjänster</a>
+      <a href="#contact" class="text-[11px] uppercase tracking-[0.2em] text-cream/40 hover:text-cream transition-colors" data-i18n="nav_contact">Kontakta oss</a>
       <a href="mailto:hello@ibunn.se" class="text-[11px] uppercase tracking-[0.2em] text-sage hover:text-sage/80 transition-colors">hello@ibunn.se</a>
+      <a href="https://linkedin.com/company/ibunn" target="_blank" rel="noopener noreferrer" class="text-cream/40 hover:text-cream transition-colors" aria-label="LinkedIn">
+        <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+      </a>
     </div>
 
-    <div class="border-t border-white/5 pt-8">
-      <p class="text-center text-[11px] uppercase tracking-[0.2em] text-cream/30">
+    <div class="border-t border-white/5 pt-8 flex flex-col md:flex-row justify-center items-center gap-4">
+      <p class="text-[11px] uppercase tracking-[0.2em] text-cream/30" data-i18n="footer_copy">
         &copy; 2026 Bunn Consulting AB. Alla rättigheter förbehållna.
       </p>
+      <span class="hidden md:inline text-cream/15">·</span>
+      <p class="text-[11px] uppercase tracking-[0.2em] text-cream/20">Org.nr: 559XXX-XXXX</p>
     </div>
   </div>
 </footer>
 
+<!-- Chatbot -->
+<button id="chat-fab" class="chat-fab" aria-label="Open chat">
+  <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z"/></svg>
+</button>
+
+<div id="chat-panel" class="chat-panel">
+  <div class="chat-header">
+    <div>
+      <p class="text-cream text-sm font-bold" data-i18n="chat_title">iBunn IT-konsult</p>
+      <p class="text-cream/40 text-[11px]" data-i18n="chat_subtitle">Fråga oss om IT, säkerhet & infrastruktur</p>
+    </div>
+    <button id="chat-close" class="text-cream/40 hover:text-cream transition-colors">
+      <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+    </button>
+  </div>
+  <div id="chat-messages" class="chat-messages">
+    <div class="chat-bubble bot" data-i18n="chat_welcome">Hej! 👋 Jag är iBunns virtuella IT-konsult. Ställ gärna frågor om IT-säkerhet, GDPR, NIS2, systemutveckling, arkitektur eller projektledning — jag hjälper dig gärna.</div>
+  </div>
+  <div class="chat-input-area">
+    <input id="chat-input" type="text" data-i18n-ph="ph_chat" placeholder="Skriv din fråga..." autocomplete="off">
+    <button id="chat-send">
+      <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"/></svg>
+    </button>
+  </div>
+</div>
+
 <script>
-  // Mobile menu toggle
+  // ===== TRANSLATIONS =====
+  const translations = {
+    sv: {
+      nav_home: 'Hem',
+      nav_services: 'Våra tjänster',
+      nav_contact: 'Kontakta oss',
+      nav_cta: 'Kontakta oss',
+      hero_label: 'IT-konsultföretag',
+      hero_heading: 'Vi är<br>iBunn',
+      hero_desc: 'Vi är IT-företaget som hjälper våra kunder att bli smartare, effektivare och säkrare. Genom innovativa lösningar inom IT-rådgivning, systemutveckling och projektledning driver vi framtiden.',
+      hero_sub: 'Allt vi gör bygger på tre principer: säkerhet, engagemang och proaktivitet.',
+      hero_cta1: 'Upplev Våra Tjänster',
+      hero_cta2: 'Kontakta oss',
+      services_label: 'Våra Specialistområden',
+      services_heading: 'Hur kan vi hjälpa dig?',
+      svc1_title: 'Säker Förändring på Djup',
+      svc1_desc: 'Vi hjälper organisationer med säker transformation, riskanalys och efterlevnad av regelverk som GDPR och NIS2. Trygg förändring från grunden.',
+      svc2_title: 'IT-Arkitektur',
+      svc2_desc: 'Vi bygger och underhåller IT-infrastruktur och arkitektur som är skalbar, säker och framtidssäkrad för era behov.',
+      svc3_title: 'Systemutveckling',
+      svc3_desc: 'Skräddarsydda system och applikationer byggda med moderna teknologier. Från idé till produktion, vi levererar.',
+      svc4_title: 'Projektledning',
+      svc4_desc: 'Erfaren projektledning som levererar resultat i tid och inom budget. Vi håller era projekt på rätt kurs.',
+      contact_label: 'Ta nästa steg',
+      contact_heading: 'Kontakta oss',
+      contact_desc: 'Kontakta oss idag för att inleda en konsultation om era IT-behov. Vi återkommer inom 24 timmar.',
+      form_company: 'Företags Namn',
+      form_message: 'Meddelande',
+      form_submit: 'Skicka Förfrågan',
+      form_success: 'Tack! Vi hör av oss snart.',
+      footer_desc: 'Vi är IT-företaget som hjälper våra kunder med bland annat IT-rådgivning, systemutveckling och projektledning.',
+      footer_copy: '© 2026 Bunn Consulting AB. Alla rättigheter förbehållna.',
+      chat_title: 'iBunn IT-konsult',
+      chat_subtitle: 'Fråga oss om IT, säkerhet & infrastruktur',
+      chat_welcome: 'Hej! 👋 Jag är iBunns virtuella IT-konsult. Ställ gärna frågor om IT-säkerhet, GDPR, NIS2, systemutveckling, arkitektur eller projektledning — jag hjälper dig gärna.',
+      ph_company: 'Ert företag',
+      ph_email: 'namn@företag.se',
+      ph_message: 'Beskriv era behov...',
+      ph_chat: 'Skriv din fråga...',
+      stat1_label: 'Års erfarenhet',
+      stat2_label: 'Genomförda projekt',
+      stat3_label: 'GDPR-efterlevnad',
+      stat4_label: 'Svarstid',
+    },
+    en: {
+      nav_home: 'Home',
+      nav_services: 'Our Services',
+      nav_contact: 'Contact Us',
+      nav_cta: 'Contact Us',
+      hero_label: 'IT Consulting Firm',
+      hero_heading: 'We are<br>iBunn',
+      hero_desc: 'We are the IT company that helps our clients become smarter, more efficient, and more secure. Through innovative solutions in IT advisory, system development, and project management, we drive the future.',
+      hero_sub: 'Everything we do is built on three principles: security, commitment, and proactivity.',
+      hero_cta1: 'Explore Our Services',
+      hero_cta2: 'Contact Us',
+      services_label: 'Our Expertise',
+      services_heading: 'How can we help you?',
+      svc1_title: 'Secure Transformation',
+      svc1_desc: 'We help organizations with secure transformation, risk analysis, and compliance with frameworks like GDPR and NIS2. Safe change from the ground up.',
+      svc2_title: 'IT Architecture',
+      svc2_desc: 'We build and maintain IT infrastructure and architecture that is scalable, secure, and future-proof for your needs.',
+      svc3_title: 'System Development',
+      svc3_desc: 'Custom-built systems and applications using modern technologies. From concept to production, we deliver.',
+      svc4_title: 'Project Management',
+      svc4_desc: 'Experienced project management that delivers results on time and within budget. We keep your projects on track.',
+      contact_label: 'Take the Next Step',
+      contact_heading: 'Contact Us',
+      contact_desc: 'Get in touch today to start a consultation about your IT needs. We will respond within 24 hours.',
+      form_company: 'Company Name',
+      form_message: 'Message',
+      form_submit: 'Send Inquiry',
+      form_success: 'Thank you! We will be in touch soon.',
+      footer_desc: 'We are the IT company that helps our clients with IT advisory, system development, and project management.',
+      footer_copy: '© 2026 Bunn Consulting AB. All rights reserved.',
+      chat_title: 'iBunn IT Consultant',
+      chat_subtitle: 'Ask us about IT, security & infrastructure',
+      chat_welcome: 'Hi! 👋 I\'m iBunn\'s virtual IT consultant. Feel free to ask questions about IT security, GDPR, NIS2, system development, architecture, or project management — I\'m happy to help.',
+      ph_company: 'Your company',
+      ph_email: 'name@company.com',
+      ph_message: 'Describe your needs...',
+      ph_chat: 'Type your question...',
+      stat1_label: 'Years of experience',
+      stat2_label: 'Completed projects',
+      stat3_label: 'GDPR compliance',
+      stat4_label: 'Response time',
+    }
+  };
+
+  let currentLang = localStorage.getItem('ibunn-lang') || 'sv';
+
+  function setLanguage(lang) {
+    currentLang = lang;
+    localStorage.setItem('ibunn-lang', lang);
+    document.documentElement.lang = lang === 'sv' ? 'sv' : 'en';
+
+    // Fade out translatable elements
+    const els = document.querySelectorAll('[data-i18n], [data-i18n-ph]');
+    els.forEach(el => el.classList.add('lang-fading'));
+
+    // After fade-out, swap text and fade back in
+    setTimeout(() => {
+      // Update text content
+      document.querySelectorAll('[data-i18n]').forEach(el => {
+        const key = el.getAttribute('data-i18n');
+        if (translations[lang][key]) {
+          el.innerHTML = translations[lang][key];
+        }
+      });
+
+      // Update placeholders
+      document.querySelectorAll('[data-i18n-ph]').forEach(el => {
+        const key = el.getAttribute('data-i18n-ph');
+        if (translations[lang][key]) {
+          el.placeholder = translations[lang][key];
+        }
+      });
+
+      // Fade back in
+      els.forEach(el => el.classList.remove('lang-fading'));
+    }, 250);
+
+    // Update toggle buttons
+    document.querySelectorAll('.lang-toggle button').forEach(btn => {
+      btn.classList.remove('active');
+    });
+    document.getElementById('lang-' + lang)?.classList.add('active');
+    document.getElementById('lang-' + lang + '-m')?.classList.add('active');
+  }
+
+  // Apply saved language on load
+  if (currentLang !== 'sv') {
+    setLanguage(currentLang);
+  }
+
+  // ===== MOBILE MENU =====
   const menuToggle = document.getElementById('menu-toggle');
   const mobileMenu = document.getElementById('mobile-menu');
   menuToggle.addEventListener('click', () => mobileMenu.classList.toggle('hidden'));
@@ -449,35 +993,265 @@
     link.addEventListener('click', () => mobileMenu.classList.add('hidden'))
   );
 
-  // Navbar scroll effect
+  // ===== NAVBAR AUTO-HIDE =====
   const navbar = document.getElementById('navbar');
-  window.addEventListener('scroll', () => {
-    navbar.classList.toggle('scrolled', window.scrollY > 50);
-  });
+  let navTimer = null;
+  let navVisible = false;
 
-  // Reveal on scroll
-  const observer = new IntersectionObserver((entries) => {
+  function showNav() {
+    navbar.classList.remove('nav-hidden');
+    navbar.classList.toggle('scrolled', window.scrollY > 50);
+    navVisible = true;
+    clearTimeout(navTimer);
+    navTimer = setTimeout(hideNav, 2500);
+  }
+
+  function hideNav() {
+    // Don't hide if mobile menu is open
+    if (!mobileMenu.classList.contains('hidden')) return;
+    navbar.classList.add('nav-hidden');
+    navVisible = false;
+  }
+
+  // Show navbar after preloader dismisses
+  setTimeout(() => {
+    showNav();
+  }, 1200);
+
+  // Show on scroll, mouse move, or touch
+  window.addEventListener('scroll', showNav, { passive: true });
+  window.addEventListener('mousemove', showNav, { passive: true });
+  window.addEventListener('touchstart', showNav, { passive: true });
+
+  // ===== SCROLL REVEAL =====
+  const revealObserver = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
-      if (entry.isIntersecting) entry.target.classList.add('visible');
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+      }
     });
   }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
 
-  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+  document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
 
-  // Scroll-driven darkening overlay — smooth, no hard lines
+  // Staggered card reveal (service cards + contact card)
+  const cardObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+      }
+    });
+  }, { threshold: 0.08, rootMargin: '0px 0px -20px 0px' });
+
+  document.querySelectorAll('.reveal-card').forEach(el => cardObserver.observe(el));
+
+  // ===== SCROLL OVERLAY =====
   const scrollOverlay = document.getElementById('scroll-overlay');
 
   function updateOverlay() {
     const scrollY = window.scrollY;
     const docHeight = document.documentElement.scrollHeight - window.innerHeight;
     const progress = docHeight > 0 ? Math.min(scrollY / docHeight, 1) : 0;
-
-    // Smoothly darken from 0.82 (top) → 0.96 (bottom)
     const opacity = 0.82 + progress * 0.14;
     scrollOverlay.style.opacity = opacity.toString();
     requestAnimationFrame(updateOverlay);
   }
   requestAnimationFrame(updateOverlay);
+
+  // ===== VIDEO CROSSFADE LOOP =====
+  const videoA = document.getElementById('video-a');
+  const videoB = document.getElementById('video-b');
+  const CROSSFADE_TIME = 1.5;
+
+  function setupCrossfade(playing, waiting) {
+    playing.addEventListener('timeupdate', function handler() {
+      const timeLeft = playing.duration - playing.currentTime;
+      if (timeLeft <= CROSSFADE_TIME && timeLeft > 0) {
+        waiting.currentTime = 0;
+        waiting.play();
+        waiting.classList.remove('fade-out');
+        playing.classList.add('fade-out');
+        playing.removeEventListener('timeupdate', handler);
+        setTimeout(() => {
+          playing.pause();
+          playing.currentTime = 0;
+          setupCrossfade(waiting, playing);
+        }, CROSSFADE_TIME * 1000);
+      }
+    });
+  }
+
+  videoA.addEventListener('loadedmetadata', () => {
+    videoB.load();
+    setupCrossfade(videoA, videoB);
+  });
+  // ===== CHATBOT =====
+  const GEMINI_API_KEY = 'AIzaSyDrF75ReLUbFkidvxPZ-RgvdOANWW_iNk8';
+  const GEMINI_URL = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${GEMINI_API_KEY}`;
+
+  const chatFab = document.getElementById('chat-fab');
+  const chatPanel = document.getElementById('chat-panel');
+  const chatClose = document.getElementById('chat-close');
+  const chatMessages = document.getElementById('chat-messages');
+  const chatInput = document.getElementById('chat-input');
+  const chatSend = document.getElementById('chat-send');
+
+  let chatHistory = [];
+  const SYSTEM_PROMPT = `You are an IT consultant working at iBunn (Bunn Consulting AB), a Swedish IT consulting firm based in Stockholm. You specialize in:
+
+- IT Advisory & Strategy
+- System Development (custom applications, integrations)
+- IT Architecture (scalable, secure infrastructure)
+- Project Management (agile, waterfall)
+- IT Security, GDPR compliance, and NIS2 compliance
+- Risk Analysis
+
+Your personality: Professional, knowledgeable, helpful, and approachable. You speak with authority but remain friendly. You give practical, actionable advice.
+
+Rules:
+- Respond in the same language the user writes in (Swedish or English).
+- Keep answers concise but informative (2-4 paragraphs max).
+- If asked about pricing or specific engagements, suggest they contact iBunn directly at hello@ibunn.se or +46 8 123 45 67.
+- You can discuss general IT topics, best practices, technology recommendations, compliance frameworks, and architectural patterns.
+- Do not make up specific case studies or client names.`;
+
+  chatFab.addEventListener('click', () => {
+    chatPanel.classList.add('open');
+    chatFab.style.display = 'none';
+    chatInput.focus();
+  });
+
+  chatClose.addEventListener('click', () => {
+    chatPanel.classList.remove('open');
+    chatFab.style.display = 'flex';
+  });
+
+  function addMessage(text, type) {
+    const bubble = document.createElement('div');
+    bubble.className = `chat-bubble ${type}`;
+    bubble.textContent = text;
+    chatMessages.appendChild(bubble);
+    chatMessages.scrollTop = chatMessages.scrollHeight;
+  }
+
+  function showTyping() {
+    const typing = document.createElement('div');
+    typing.className = 'chat-typing';
+    typing.id = 'typing-indicator';
+    typing.innerHTML = '<span></span><span></span><span></span>';
+    chatMessages.appendChild(typing);
+    chatMessages.scrollTop = chatMessages.scrollHeight;
+  }
+
+  function hideTyping() {
+    const typing = document.getElementById('typing-indicator');
+    if (typing) typing.remove();
+  }
+
+  async function sendMessage() {
+    const text = chatInput.value.trim();
+    if (!text) return;
+
+    addMessage(text, 'user');
+    chatInput.value = '';
+    chatInput.disabled = true;
+
+    chatHistory.push({ role: 'user', parts: [{ text }] });
+
+    showTyping();
+
+    try {
+      const response = await fetch(GEMINI_URL, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          system_instruction: { parts: [{ text: SYSTEM_PROMPT }] },
+          contents: chatHistory,
+          generationConfig: {
+            temperature: 0.7,
+            maxOutputTokens: 512,
+          }
+        })
+      });
+
+      const data = await response.json();
+      hideTyping();
+
+      if (data.candidates && data.candidates[0]?.content?.parts?.[0]?.text) {
+        const reply = data.candidates[0].content.parts[0].text;
+        chatHistory.push({ role: 'model', parts: [{ text: reply }] });
+        addMessage(reply, 'bot');
+      } else {
+        addMessage('Sorry, I could not process that request. Please try again.', 'bot');
+      }
+    } catch (err) {
+      hideTyping();
+      addMessage('Connection error. Please try again later.', 'bot');
+    }
+
+    chatInput.disabled = false;
+    chatInput.focus();
+  }
+
+  chatSend.addEventListener('click', sendMessage);
+  chatInput.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter') sendMessage();
+  });
+
+  // ===== PRELOADER =====
+  window.addEventListener('load', () => {
+    setTimeout(() => {
+      document.getElementById('preloader').classList.add('loaded');
+    }, 800);
+  });
+  // Fallback: dismiss preloader after 2.5s even if load hasn't fired
+  setTimeout(() => {
+    document.getElementById('preloader')?.classList.add('loaded');
+  }, 2500);
+
+  // ===== ANIMATED COUNTERS =====
+  const counterObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const counters = entry.target.querySelectorAll('[data-count]');
+        counters.forEach((counter, i) => {
+          const target = parseInt(counter.getAttribute('data-count'));
+          const startVal = parseInt(counter.getAttribute('data-start') || '0');
+          const suffix = counter.getAttribute('data-suffix') || '+';
+          const duration = 1800;
+
+          // Trigger slide-up with staggered delay
+          setTimeout(() => {
+            counter.classList.add('counted');
+          }, i * 120);
+
+          // Start number count-up after slide-up begins
+          setTimeout(() => {
+            const start = performance.now();
+            function tick(now) {
+              const elapsed = now - start;
+              const progress = Math.min(elapsed / duration, 1);
+              const eased = 1 - Math.pow(1 - progress, 3);
+              const current = Math.round(startVal + eased * (target - startVal));
+              counter.textContent = current + suffix;
+              if (progress < 1) requestAnimationFrame(tick);
+            }
+            requestAnimationFrame(tick);
+          }, i * 120 + 200);
+        });
+        counterObserver.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.3 });
+
+  document.querySelectorAll('.stats-section .reveal').forEach(el => counterObserver.observe(el));
+
+  // ===== REMOVE LANG HIGHLIGHT AFTER ANIMATION =====
+  setTimeout(() => {
+    document.querySelectorAll('.lang-highlight').forEach(el => {
+      el.classList.remove('lang-highlight');
+    });
+  }, 8500);
 </script>
 
 </body>

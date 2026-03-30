@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>404 — Sidan hittades inte | iBunn</title>
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Space Grotesk', sans-serif; }
+    body {
+      background: #090915;
+      color: #E8E4DB;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 2rem;
+    }
+    .code {
+      font-size: clamp(6rem, 20vw, 12rem);
+      font-weight: 700;
+      color: #A9B187;
+      line-height: 1;
+      opacity: 0.15;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      user-select: none;
+    }
+    .content {
+      position: relative;
+      z-index: 1;
+    }
+    .logo {
+      font-size: 1.25rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      margin-bottom: 3rem;
+      opacity: 0.4;
+    }
+    h1 {
+      font-size: clamp(1.5rem, 4vw, 2.5rem);
+      font-weight: 700;
+      margin-bottom: 1rem;
+      letter-spacing: -0.02em;
+    }
+    p {
+      color: rgba(232, 228, 219, 0.5);
+      font-size: 0.95rem;
+      line-height: 1.6;
+      max-width: 28rem;
+      margin-bottom: 2.5rem;
+    }
+    a {
+      display: inline-block;
+      background: #A9B187;
+      color: #090915;
+      padding: 0.85rem 2.5rem;
+      border-radius: 0.5rem;
+      font-weight: 700;
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      text-decoration: none;
+      transition: all 0.3s ease;
+    }
+    a:hover {
+      filter: brightness(1.1);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 16px rgba(169, 177, 135, 0.3);
+    }
+  </style>
+</head>
+<body>
+  <div class="code">404</div>
+  <div class="content">
+    <div class="logo">iBunn</div>
+    <h1>Sidan hittades inte</h1>
+    <p>Sidan du letar efter finns inte eller har flyttats. Kontrollera adressen och försök igen.</p>
+    <a href="/">Tillbaka till startsidan</a>
+  </div>
+</body>
+</html>
