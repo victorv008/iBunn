@@ -219,15 +219,15 @@
       transform: translateY(0);
     }
 
-    /* Staggered card reveal */
+    /* Staggered card reveal — Premium feel */
     .reveal-card {
       opacity: 0;
-      transform: translateY(40px);
-      transition: opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1), transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+      transform: translateY(30px) scale(0.98);
+      transition: opacity 1.1s cubic-bezier(0.22, 1, 0.36, 1), transform 1.1s cubic-bezier(0.22, 1, 0.36, 1);
     }
     .reveal-card.visible {
       opacity: 1;
-      transform: translateY(0);
+      transform: translateY(0) scale(1);
     }
 
     /* Fixed background video */
@@ -318,40 +318,182 @@
       background: rgba(169, 177, 135, 0.1);
     }
 
-    /* Language toggle */
+    /* Language toggle — circular flags */
     .lang-toggle {
       display: flex;
       align-items: center;
-      gap: 2px;
+      gap: 10px;
       background: rgba(255, 255, 255, 0.05);
       border: 1px solid rgba(255, 255, 255, 0.1);
-      border-radius: 8px;
-      padding: 2px;
-      font-size: 11px;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
+      border-radius: 20px;
+      padding: 4px 8px;
     }
     .lang-toggle button {
-      padding: 4px 10px;
-      border-radius: 6px;
-      transition: all 0.25s ease;
-      color: rgba(232, 228, 219, 0.4);
-      font-weight: 600;
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.3s ease;
+      opacity: 0.4;
+      filter: grayscale(100%);
+      border: 2px solid transparent;
     }
     .lang-toggle button.active {
-      background: rgba(169, 177, 135, 0.2);
-      color: #A9B187;
+      opacity: 1;
+      filter: grayscale(0);
+      transform: scale(1.15);
+      border-color: #A9B187;
+      box-shadow: 0 0 10px rgba(169, 177, 135, 0.3);
+    }
+    .lang-toggle svg { width: 100%; height: 100%; object-fit: cover; }
+
+    /* Chatbot enhancement */
+    .chat-panel {
+      position: fixed;
+      bottom: 96px;
+      right: 28px;
+      z-index: 9997;
+      width: 400px;
+      max-width: calc(100vw - 32px);
+      height: 580px;
+      max-height: calc(100vh - 140px);
+      background: rgba(10, 17, 24, 0.96);
+      backdrop-filter: blur(30px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 24px;
+      display: none;
+      flex-direction: column;
+      overflow: hidden;
+      box-shadow: 0 30px 100px rgba(0, 0, 0, 0.7);
+      transition: all 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+    .chat-panel.open {
+      display: flex;
+      animation: chatAppear 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+    @keyframes chatAppear {
+      from { opacity: 0; transform: translateY(20px) scale(0.95); }
+      to { opacity: 1; transform: translateY(0) scale(1); }
+    }
+    
+    .chat-header {
+      padding: 20px;
+      background: rgba(169, 177, 135, 0.05);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    
+    .chat-messages {
+      flex: 1;
+      overflow-y: auto;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+    .chat-bubble {
+      max-width: 85%;
+      padding: 12px 16px;
+      border-radius: 18px;
+      font-size: 14px;
+      line-height: 1.5;
+    }
+    .chat-bubble.bot {
+      background: rgba(255, 255, 255, 0.05);
+      color: #E8E4DB;
+      align-self: flex-start;
+      border-bottom-left-radius: 4px;
+    }
+    .chat-bubble.user {
+      background: #A9B187;
+      color: #090915;
+      align-self: flex-end;
+      border-bottom-right-radius: 4px;
+      box-shadow: 0 4px 12px rgba(169, 177, 135, 0.2);
     }
 
-    /* Chatbot styles */
+    /* Popular Question Chips */
+    .chat-chips-container {
+      padding: 12px 20px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      border-top: 1px solid rgba(255, 255, 255, 0.05);
+      background: rgba(0, 0, 0, 0.1);
+    }
+    .chip {
+      background: rgba(169, 177, 135, 0.1);
+      border: 1px solid rgba(169, 177, 135, 0.2);
+      color: #A9B187;
+      padding: 6px 12px;
+      border-radius: 100px;
+      font-size: 12px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      white-space: nowrap;
+    }
+    .chip:hover {
+      background: #A9B187;
+      color: #090915;
+      transform: translateY(-1px);
+    }
+
+    /* Email Fallback Link */
+    .email-suggest {
+      margin-top: 8px;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      color: #A9B187;
+      font-weight: 600;
+      text-decoration: underline;
+      cursor: pointer;
+      font-size: 13px;
+    }
+    .email-suggest:hover { color: #ccdb9c; }
+
+    .chat-input-area {
+      padding: 16px 20px;
+      display: flex;
+      gap: 10px;
+      background: rgba(10, 17, 24, 0.98);
+    }
+    .chat-input-area input {
+      flex: 1;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 12px;
+      padding: 12px 16px;
+      color: #E8E4DB;
+      font-size: 14px;
+    }
+    .chat-input-area button {
+      background: #A9B187;
+      color: #090915;
+      width: 46px;
+      height: 46px;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.2s;
+    }
+    .chat-input-area button:hover { transform: scale(1.05); filter: brightness(1.1); }
+
+    /* Floating chat action button */
     .chat-fab {
       position: fixed;
-      bottom: 28px;
-      right: 28px;
-      z-index: 100;
-      width: 56px;
-      height: 56px;
-      border-radius: 16px;
+      bottom: 32px;
+      right: 32px;
+      z-index: 9998;
+      width: 58px;
+      height: 58px;
+      border-radius: 18px;
       background: #A9B187;
       color: #090915;
       border: none;
@@ -359,134 +501,25 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      box-shadow: 0 8px 32px rgba(169, 177, 135, 0.3);
-      transition: all 0.3s ease;
+      box-shadow: 0 8px 32px rgba(169, 177, 135, 0.4);
+      transition: opacity 0.3s ease, transform 0.3s ease;
+      animation: fabPulse 2.5s ease-in-out infinite;
     }
-    .chat-fab:hover {
-      transform: translateY(-3px) scale(1.05);
-      box-shadow: 0 12px 40px rgba(169, 177, 135, 0.4);
+    .chat-fab svg { width: 26px; height: 26px; pointer-events: none; }
+    .chat-fab:hover { transform: translateY(-3px) scale(1.06); box-shadow: 0 16px 40px rgba(169, 177, 135, 0.5); }
+    @keyframes fabPulse {
+      0%, 100% { box-shadow: 0 8px 32px rgba(169, 177, 135, 0.4); }
+      50% { box-shadow: 0 8px 32px rgba(169, 177, 135, 0.4), 0 0 0 14px rgba(169, 177, 135, 0.1); }
     }
-    .chat-fab svg { width: 24px; height: 24px; }
 
-    .chat-panel {
-      position: fixed;
-      bottom: 96px;
-      right: 28px;
-      z-index: 100;
-      width: 400px;
-      max-width: calc(100vw - 32px);
-      height: 520px;
-      max-height: calc(100vh - 140px);
-      background: rgba(10, 17, 24, 0.95);
-      backdrop-filter: blur(24px);
-      border: 1px solid rgba(255, 255, 255, 0.08);
-      border-radius: 20px;
-      display: none;
-      flex-direction: column;
-      overflow: hidden;
-      box-shadow: 0 24px 80px rgba(0, 0, 0, 0.6);
-    }
-    .chat-panel.open {
-      display: flex;
-      animation: chatSlideUp 0.35s cubic-bezier(0.22, 1, 0.36, 1);
-    }
-    @keyframes chatSlideUp {
-      from { opacity: 0; transform: translateY(16px) scale(0.96); }
-      to { opacity: 1; transform: translateY(0) scale(1); }
-    }
-    .chat-header {
-      padding: 16px 20px;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-    }
-    .chat-messages {
-      flex: 1;
-      overflow-y: auto;
-      padding: 16px 20px;
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-    }
-    .chat-messages::-webkit-scrollbar { width: 4px; }
-    .chat-messages::-webkit-scrollbar-track { background: transparent; }
-    .chat-messages::-webkit-scrollbar-thumb { background: rgba(169, 177, 135, 0.3); border-radius: 2px; }
-    .chat-bubble {
-      max-width: 85%;
-      padding: 10px 14px;
-      border-radius: 14px;
-      font-size: 13px;
-      line-height: 1.5;
-      word-wrap: break-word;
-    }
-    .chat-bubble.bot {
-      background: rgba(255, 255, 255, 0.06);
-      color: #E8E4DB;
-      align-self: flex-start;
-      border-bottom-left-radius: 4px;
-    }
-    .chat-bubble.user {
-      background: rgba(169, 177, 135, 0.2);
-      color: #E8E4DB;
-      align-self: flex-end;
-      border-bottom-right-radius: 4px;
-    }
-    .chat-typing {
-      display: flex;
-      gap: 4px;
-      padding: 10px 14px;
-      align-self: flex-start;
-    }
-    .chat-typing span {
-      width: 6px;
-      height: 6px;
-      border-radius: 50%;
-      background: rgba(169, 177, 135, 0.5);
-      animation: typingDot 1.4s infinite;
-    }
-    .chat-typing span:nth-child(2) { animation-delay: 0.2s; }
-    .chat-typing span:nth-child(3) { animation-delay: 0.4s; }
-    @keyframes typingDot {
-      0%, 60%, 100% { opacity: 0.3; transform: translateY(0); }
-      30% { opacity: 1; transform: translateY(-4px); }
-    }
-    .chat-input-area {
-      padding: 12px 16px;
-      border-top: 1px solid rgba(255, 255, 255, 0.06);
-      display: flex;
-      gap: 8px;
-    }
-    .chat-input-area input {
-      flex: 1;
-      background: rgba(255, 255, 255, 0.05);
-      border: 1px solid rgba(255, 255, 255, 0.08);
-      border-radius: 10px;
-      padding: 10px 14px;
-      color: #E8E4DB;
-      font-size: 13px;
-      outline: none;
-      transition: border-color 0.2s;
-    }
-    .chat-input-area input:focus {
-      border-color: rgba(169, 177, 135, 0.4);
-    }
-    .chat-input-area input::placeholder {
-      color: rgba(232, 228, 219, 0.25);
-    }
-    .chat-input-area button {
-      background: #A9B187;
-      color: #090915;
-      border: none;
-      border-radius: 10px;
-      padding: 0 14px;
-      cursor: pointer;
-      transition: all 0.2s;
-      display: flex;
-      align-items: center;
-    }
-    .chat-input-area button:hover {
-      filter: brightness(1.1);
+    /* Prevent SVGs inside lang-toggle from absorbing click */
+    .lang-toggle button svg { pointer-events: none; }
+
+    /* Chat FAB hidden state */
+    .chat-fab-hidden {
+      opacity: 0 !important;
+      pointer-events: none !important;
+      transform: scale(0.8) !important;
     }
 
     /* Scrollbar */
@@ -566,10 +599,14 @@
     </div>
 
     <div class="hidden md:flex items-center space-x-4">
-      <!-- Language toggle -->
-      <div class="lang-toggle lang-highlight">
-        <button id="lang-sv" class="active" onclick="setLanguage('sv')">SV</button>
-        <button id="lang-en" onclick="setLanguage('en')">EN</button>
+      <!-- Language toggle with flags -->
+      <div class="lang-toggle">
+        <button id="lang-sv" class="active" onclick="setLanguage('sv')" aria-label="Svenska">
+          <svg viewBox="0 0 640 480"><path fill="#006aa7" d="M0 0h640v480H0z"/><path fill="#fecc00" d="M0 192h640v96H0z"/><path fill="#fecc00" d="M192 0h96v480h-96z"/></svg>
+        </button>
+        <button id="lang-en" onclick="setLanguage('en')" aria-label="English">
+          <svg viewBox="0 0 640 480"><path fill="#012169" d="M0 0h640v480H0z"/><path fill="#FFF" d="m75 0 244 181L562 0h78v62L400 240l240 178v62h-78L320 300 78 480H0v-62l240-178L0 62V0h75z"/><path fill="#C8102E" d="m424 281 216 159v40L369 281h55zM225 199 0 32v40l176 127h49zM0 450l210-153h51L45 480H0v-30zM429 0l211 151h-52L400 23l29-23z"/><path fill="#FFF" d="M241 0v480h160V0H241zM0 160v160h640V160H0z"/><path fill="#C8102E" d="M271 0v480h100V0H271zM0 190v100h640V190H0z"/></svg>
+        </button>
       </div>
 
       <a href="#contact" class="btn-sage px-5 py-2 text-xs font-bold rounded-lg uppercase tracking-wider" data-i18n="nav_cta">
@@ -580,8 +617,12 @@
     <!-- Mobile menu button -->
     <div class="flex md:hidden items-center space-x-3">
       <div class="lang-toggle">
-        <button id="lang-sv-m" class="active" onclick="setLanguage('sv')">SV</button>
-        <button id="lang-en-m" onclick="setLanguage('en')">EN</button>
+        <button id="lang-sv-m" class="active" onclick="setLanguage('sv')" aria-label="Svenska">
+          <svg viewBox="0 0 640 480"><path fill="#006aa7" d="M0 0h640v480H0z"/><path fill="#fecc00" d="M0 192h640v96H0z"/><path fill="#fecc00" d="M192 0h96v480h-96z"/></svg>
+        </button>
+        <button id="lang-en-m" onclick="setLanguage('en')" aria-label="English">
+          <svg viewBox="0 0 640 480"><path fill="#012169" d="M0 0h640v480H0z"/><path fill="#FFF" d="m75 0 244 181L562 0h78v62L400 240l240 178v62h-78L320 300 78 480H0v-62l240-178L0 62V0h75z"/><path fill="#C8102E" d="m424 281 216 159v40L369 281h55zM225 199 0 32v40l176 127h49zM0 450l210-153h51L45 480H0v-30zM429 0l211 151h-52L400 23l29-23z"/><path fill="#FFF" d="M241 0v480h160V0H241zM0 160v160h640V160H0z"/><path fill="#C8102E" d="M271 0v480h100V0H271zM0 190v100h640V190H0z"/></svg>
+        </button>
       </div>
       <button id="menu-toggle" class="text-cream">
         <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 6h16M4 12h16M4 18h16"/></svg>
@@ -842,6 +883,12 @@
   <div id="chat-messages" class="chat-messages">
     <div class="chat-bubble bot" data-i18n="chat_welcome">Hej! 👋 Jag är iBunns virtuella IT-konsult. Ställ gärna frågor om IT-säkerhet, GDPR, NIS2, systemutveckling, arkitektur eller projektledning — jag hjälper dig gärna.</div>
   </div>
+  <div id="chat-chips" class="chat-chips-container">
+    <div class="chip" onclick="handleChipClick(this)" data-i18n="chip1">Vilka tjänster erbjuder ni?</div>
+    <div class="chip" onclick="handleChipClick(this)" data-i18n="chip2">Hur jobbar ni med GDPR?</div>
+    <div class="chip" onclick="handleChipClick(this)" data-i18n="chip3">Vad är NIS2?</div>
+    <div class="chip" onclick="handleChipClick(this)" data-i18n="chip4">Hur kontaktar jag er?</div>
+  </div>
   <div class="chat-input-area">
     <input id="chat-input" type="text" data-i18n-ph="ph_chat" placeholder="Skriv din fråga..." autocomplete="off">
     <button id="chat-send">
@@ -894,6 +941,11 @@
       stat2_label: 'Genomförda projekt',
       stat3_label: 'GDPR-efterlevnad',
       stat4_label: 'Svarstid',
+      chip1: 'Vilka tjänster erbjuder ni?',
+      chip2: 'Hur jobbar ni med GDPR?',
+      chip3: 'Vad är NIS2?',
+      chip4: 'Hur kontaktar jag er?',
+      chat_email_fallback: 'Vill du hellre prata med en människa? <span class="email-suggest" onclick="window.location.href=\'mailto:hello@ibunn.se\'">Mejla oss här</span> så svarar vi personligen.',
     },
     en: {
       nav_home: 'Home',
@@ -936,6 +988,11 @@
       stat2_label: 'Completed projects',
       stat3_label: 'GDPR compliance',
       stat4_label: 'Response time',
+      chip1: 'What services do you offer?',
+      chip2: 'How do you work with GDPR?',
+      chip3: 'What is NIS2?',
+      chip4: 'How do I contact you?',
+      chat_email_fallback: 'Prefer to talk to a human? <span class="email-suggest" onclick="window.location.href=\'mailto:hello@ibunn.se\'">Email us here</span> and we will respond personally.',
     }
   };
 
@@ -972,12 +1029,22 @@
       els.forEach(el => el.classList.remove('lang-fading'));
     }, 250);
 
-    // Update toggle buttons
+    // Update toggle buttons (SV/EN flags)
     document.querySelectorAll('.lang-toggle button').forEach(btn => {
       btn.classList.remove('active');
     });
-    document.getElementById('lang-' + lang)?.classList.add('active');
-    document.getElementById('lang-' + lang + '-m')?.classList.add('active');
+    const svBtn = document.getElementById('lang-sv');
+    const enBtn = document.getElementById('lang-en');
+    const svBtnM = document.getElementById('lang-sv-m');
+    const enBtnM = document.getElementById('lang-en-m');
+
+    if (lang === 'sv') {
+      svBtn?.classList.add('active');
+      svBtnM?.classList.add('active');
+    } else {
+      enBtn?.classList.add('active');
+      enBtnM?.classList.add('active');
+    }
   }
 
   // Apply saved language on load
@@ -1086,7 +1153,7 @@
     setupCrossfade(videoA, videoB);
   });
   // ===== CHATBOT =====
-  const GEMINI_API_KEY = 'AIzaSyDrF75ReLUbFkidvxPZ-RgvdOANWW_iNk8';
+  const GEMINI_API_KEY = 'AIzaSyB-ET7O10IpIiT8zPBt-5YNPAfP1fRjZlw';
   const GEMINI_URL = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${GEMINI_API_KEY}`;
 
   const chatFab = document.getElementById('chat-fab');
@@ -1097,55 +1164,58 @@
   const chatSend = document.getElementById('chat-send');
 
   let chatHistory = [];
-  const SYSTEM_PROMPT = `You are an IT consultant working at iBunn (Bunn Consulting AB), a Swedish IT consulting firm based in Stockholm. You specialize in:
+  let botMessageCount = 0;
+  
+  const SYSTEM_PROMPT = `You are an IT consultant working at iBunn (Bunn Consulting AB), a Swedish IT consulting firm based in Stockholm. You are the firm's virtuell "receptionist".
+  Specializations: IT Advisory, System Development, IT Architecture, Project Management, IT Security, GDPR, and NIS2.
+  
+  Tone: Highly professional, tech-educated, proactive, and very helpful. Act as the first point of contact for iBunn.
+  
+  Rules:
+  1. Respond in the same language the user writes in.
+  2. Be concise but educated (use tech terms correctly).
+  3. If you don't know something or if the question is very complex, always apologize and suggest they contact a human consultant at hello@ibunn.se.
+  4. If asked about pricing, suggest a personal consultation.`;
 
-- IT Advisory & Strategy
-- System Development (custom applications, integrations)
-- IT Architecture (scalable, secure infrastructure)
-- Project Management (agile, waterfall)
-- IT Security, GDPR compliance, and NIS2 compliance
-- Risk Analysis
-
-Your personality: Professional, knowledgeable, helpful, and approachable. You speak with authority but remain friendly. You give practical, actionable advice.
-
-Rules:
-- Respond in the same language the user writes in (Swedish or English).
-- Keep answers concise but informative (2-4 paragraphs max).
-- If asked about pricing or specific engagements, suggest they contact iBunn directly at hello@ibunn.se or +46 8 123 45 67.
-- You can discuss general IT topics, best practices, technology recommendations, compliance frameworks, and architectural patterns.
-- Do not make up specific case studies or client names.`;
-
-  chatFab.addEventListener('click', () => {
+  chatFab?.addEventListener('click', () => {
     chatPanel.classList.add('open');
-    chatFab.style.display = 'none';
+    chatFab.classList.add('chat-fab-hidden');
     chatInput.focus();
   });
 
-  chatClose.addEventListener('click', () => {
+  chatClose?.addEventListener('click', () => {
     chatPanel.classList.remove('open');
-    chatFab.style.display = 'flex';
+    chatFab.classList.remove('chat-fab-hidden');
   });
 
-  function addMessage(text, type) {
+  function addMessage(text, type, isHtml = false) {
     const bubble = document.createElement('div');
     bubble.className = `chat-bubble ${type}`;
-    bubble.textContent = text;
+    if (isHtml) {
+      bubble.innerHTML = text;
+    } else {
+      bubble.textContent = text;
+    }
     chatMessages.appendChild(bubble);
     chatMessages.scrollTop = chatMessages.scrollHeight;
   }
 
   function showTyping() {
     const typing = document.createElement('div');
-    typing.className = 'chat-typing';
+    typing.className = 'chat-typing-indicator flex gap-1 p-2 self-start';
     typing.id = 'typing-indicator';
-    typing.innerHTML = '<span></span><span></span><span></span>';
+    typing.innerHTML = '<span class="w-1.5 h-1.5 rounded-full bg-sage/50 animate-bounce"></span><span class="w-1.5 h-1.5 rounded-full bg-sage/50 animate-bounce" style="animation-delay: 0.2s"></span><span class="w-1.5 h-1.5 rounded-full bg-sage/50 animate-bounce" style="animation-delay: 0.4s"></span>';
     chatMessages.appendChild(typing);
     chatMessages.scrollTop = chatMessages.scrollHeight;
   }
 
   function hideTyping() {
-    const typing = document.getElementById('typing-indicator');
-    if (typing) typing.remove();
+    document.getElementById('typing-indicator')?.remove();
+  }
+
+  function handleChipClick(chip) {
+    chatInput.value = chip.textContent;
+    sendMessage();
   }
 
   async function sendMessage() {
@@ -1157,8 +1227,17 @@ Rules:
     chatInput.disabled = true;
 
     chatHistory.push({ role: 'user', parts: [{ text }] });
-
     showTyping();
+
+    if (GEMINI_API_KEY === 'YOUR_GEMINI_API_KEY' || GEMINI_API_KEY === '') {
+      setTimeout(() => {
+        hideTyping();
+        addMessage("Ojsan! Mitt AI-system behöver en API-nyckel för att fungera. Du kan fortfarande nå våra mänskliga konsulter direkt.", "bot");
+        addMessage(translations[currentLang].chat_email_fallback, "bot", true);
+        chatInput.disabled = false;
+      }, 800);
+      return;
+    }
 
     try {
       const response = await fetch(GEMINI_URL, {
@@ -1167,10 +1246,7 @@ Rules:
         body: JSON.stringify({
           system_instruction: { parts: [{ text: SYSTEM_PROMPT }] },
           contents: chatHistory,
-          generationConfig: {
-            temperature: 0.7,
-            maxOutputTokens: 512,
-          }
+          generationConfig: { temperature: 0.7, maxOutputTokens: 512 }
         })
       });
 
@@ -1181,20 +1257,27 @@ Rules:
         const reply = data.candidates[0].content.parts[0].text;
         chatHistory.push({ role: 'model', parts: [{ text: reply }] });
         addMessage(reply, 'bot');
+        botMessageCount++;
+        
+        // Supervised email suggestion after every 3 messages or if "complex" keywords found
+        if (botMessageCount % 3 === 0) {
+          addMessage(translations[currentLang].chat_email_fallback, 'bot', true);
+        }
       } else {
-        addMessage('Sorry, I could not process that request. Please try again.', 'bot');
+        throw new Error("Invalid response");
       }
     } catch (err) {
       hideTyping();
-      addMessage('Connection error. Please try again later.', 'bot');
+      addMessage('Jag har lite svårt att svara just nu. Vill du kontakta oss via mejl istället?', 'bot');
+      addMessage(translations[currentLang].chat_email_fallback, 'bot', true);
     }
 
     chatInput.disabled = false;
     chatInput.focus();
   }
 
-  chatSend.addEventListener('click', sendMessage);
-  chatInput.addEventListener('keydown', (e) => {
+  chatSend?.addEventListener('click', sendMessage);
+  chatInput?.addEventListener('keydown', (e) => {
     if (e.key === 'Enter') sendMessage();
   });
 
